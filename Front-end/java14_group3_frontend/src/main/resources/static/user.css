@@ -1,0 +1,43 @@
+/* Apply some basic styling to the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Style the table headers */
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Style the table cells */
+td {
+    text-align: center;
+    padding: 8px;
+}
+
+/* Add some spacing between rows */
+tr {
+    border-bottom: 1px solid #ccc;
+}
+
+/* Highlight rows when hovering */
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Center align the h1 header */
+h1 {
+    text-align: center;
+}
+
+/* Apply some styles to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}

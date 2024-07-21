@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FrontEnd</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png" />
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css"
+    />
+
+
+    <link th:href="@{/assets/Duc/cs-skin-elastic.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Duc/style.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Duc/ui_users.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Duc/login/bootstrap.css}" rel="stylesheet"/>
+    <!--    <link th:href="@{/assets/css/ui_users.css}" rel="stylesheet"/>-->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"
+            rel="stylesheet"
+    />
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff !important;
+        }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1 {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding: 3px;
+        }
+        #flotPie1 table {
+            top: 20px !important;
+            right: -10px !important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5 {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart {
+            height: 160px;
+        }
+
+        .bars-icon {
+            position: absolute;
+            top: 18px;
+        }
+
+
+        #saveButton {
+            display: none; /* Ẩn liên kết mặc định */
+        }
+
+    </style>
+
+    <script
+            src="https://kit.fontawesome.com/8f73a47761.js"
+            crossorigin="anonymous"
+    ></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<!--    time picker-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<!--    parse time-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+</head>
+<body>
+<!--Begin: SideBar-->
+<div th:replace="~{common/side_bar :: side_bar}"></div>
+<!--End: SideBar-->
+
+
+<div id="right-panel" class="right-panel">
+    <!--Begin: Header-->
+    <div th:replace="~{common/header :: header}"></div>
+    <!--End: Footer-->
+
+    <!--Begin: Content-->
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <h2>View Class</h2>
+            <div class="col-md-12 form-group">
+                <div id="errorMessage" th:if="${message}" class="alert alert-success" role="alert"
+                     th:text="${message}">
+                </div>
+                <div id="errorMessage1" th:if="${errorMessage}" class="alert alert-danger" role="alert"
+                     th:text="${errorMessage}">
+                </div>
+            </div>
+            <div class="search-box">
+                <div class="search">
+                    <button class="my-button" id="showFormButton"><i class="fas fa-plus add"></i>Add Training Program</button>
+                </div>
+            </div>
+
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th class="custom-column">Class</th>
+                    <th class="custom-column">Class Code</th>
+                    <th class="custom-column">Modified on</th>
+                    <th class="custom-column">Created by</th>
+                    <th class="custom-column">Duration</th>
+                    <th class="custom-column">Status</th>
+                    <th class="custom-column">Location</th>
+                    <th class="custom-column"></th>
+                    <th style="display: none"></th>
+                    <th style="display: none"></th>
+                    <th style="display: none"></th>
+                    <th style="display: none"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="spandd" th:each="class : ${classResponses}">
+                    <td th:text="${class.getClassName()}"></td>
+                    <td th:text="${class.getClassCode()}"></td>
+                    <td th:text="${class.getModifiedDate()}"></td>
+                    <td th:text="${class.getCreatedBy().getName()}"></td>
+                    <td th:text="${class.getDuration()}"></td>
+                    <td>
+                                    <span th:text="${class.status}"
+                                          th:classappend="${class.status == 'Planing' ? 'class-planning' :
+                                                            (class.status == 'Opening' ? 'class-opening' :
+                                                            (class.status == 'Scheduled' ? 'class-scheduled' :
+                                                            (class.status  == 'Completed' ? 'class-completed' : '')))}"
+                                          style="display: inline-block; width: 100px; line-height: 1.2em; vertical-align: middle; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;text-align: center">
+                                    </span>
+                    </td>
+                    <td th:text="${class.getLocation()}"></td>
+                    <td class="showFormActions pointer">
+                        <span class="open-form" style="background:none; color: black">...</span>
+                    </td>
+                    <td style="display: none" th:text="${class.getClassId()}"></td>
+                    <td style="display: none" th:text="${class.getTrainingProgramCode()}"></td>
+                    <td style="display: none" th:text="${class.getStartDate()}"></td>
+                    <td style="display: none" th:text="${class.getEndDate()}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="overlay" id="formOverlay">
+                <div class="container">
+                    <div class="form">
+                        <form action="/class/create" method="post" th:object="${ClassRequestUI}">
+                            <table>
+                                <tr>
+                                    <th style="background-color: #0f65c1;" colspan="3">Add a new class</th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">Name</td>
+                                    <td colspan="2"><input style="width: 330px;" type="text" name="className" placeholder="Name" required></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">Location</td>
+                                    <td colspan="2"><input style="width: 330px;" type="text" name="location" placeholder="Location" required></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">Status</td>
+                                    <td>
+                                        <label>
+                                            <input type="radio" name="status" value="Planing" > Planing
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="status" value="Opening"> Opening
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input type="radio" name="status" value="Scheduled" checked> Scheduled
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="status" value="Completed"> Completed
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">Start Date</td>
+                                    <td colspan="2">
+                                        <input style="width: 330px;" type="text" id="startDate" name="startDate" placeholder="Select date" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">End Date</td>
+                                    <td colspan="2">
+                                        <input style="width: 330px;" type="text" id="endDate" name="endDate" placeholder="Select date" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">Training Program</td>
+                                    <td colspan="2">
+                                        <select name="trainingProgramCode" style="width: 330px">
+                                                    <div th:each="response : ${trainingProgramResponses}">
+                                                        <option th:value="${response.trainingProgramCode}" th:text="${response.trainingProgramCode + ' (' + response.name + ')'}"></option>
+                                                    </div>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="bk_save_user" style="margin-bottom: 5px;">
+                                <button type="submit" class="button-save-user" style="background-color: #0f65c1">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" id="formActions" style="background: none">
+                <div class="container" style="margin-right: inherit; max-width: 180px;min-width: 180px;">
+                    <div class="form" style="border-radius: 10px;">
+                        <table>
+                            <tr>
+                                <td style="padding-top: 0px;padding-bottom: 5px;">
+                                    <p style="padding: 3px;background-color: white;color: #2A4365;text-align: left;padding-left: 0px; display: inline; font-weight: 700;">Manage</p>
+                                    <i class="fa-solid fa-rectangle-xmark close-form-action" style="color: red; display: inline; margin-left: 65px; cursor: pointer"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0px 10px;"><hr style="margin: 0rem 0;"></td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+                                    <a id="fifthLink" style="color: #17b5ec;" class="readDetailClass">
+                                        <i class="fa-solid fa-book-open-reader" style="width: 15px;height: 15px;padding-right: 20px;"></i>Read Detail
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="pointer">
+                                <td class="open-edit-form" style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;"><i class="fa-solid fa-pencil" style="width: 15px;height: 15px;padding-right: 20px;"></i>Edit class</td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+                                    <a id="secondLink" style="color: #17b5ec;" class="duplicateClassAction">
+                                        <i class="fa-sharp fa-regular fa-copy" style="width: 15px;height: 15px;padding-right: 20px;"></i>Duplicate class
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+                                    <a id="fourthLink" style="color: #17b5ec;" class="deleteClassAction">
+                                        <i class="fa-solid fa-trash" style="width: 15px;height: 15px;padding-right: 20px;"></i>Delete class
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" id="formEdit">
+                <div class="container">
+                    <div class="form">
+                        <form action="/class/edit" method="post" >
+                            <table>
+                                <tr>
+                                    <th style="background-color: #0f65c1;" colspan="3">Edit Class</th>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td colspan="2"><input type="text" name="className" placeholder="name"></td>
+                                </tr>
+                                <tr>
+                                    <td>Location</td>
+                                    <td colspan="2"><input type="text" name="location" placeholder="location"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">Status</td>
+                                    <td>
+                                        <label>
+                                            <input type="radio" name="status" value="Planing"> Planing
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="status" value="Opening"> Opening
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input type="radio" name="status" value="Scheduled"> Scheduled
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="status" value="Completed"> Completed
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">Start Date</td>
+                                    <td colspan="2">
+                                        <input style="width: 100%;" type="text" id="startDate2" name="startDate" placeholder="Select date">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 110px">End Date</td>
+                                    <td colspan="2">
+                                        <input style="width: 100%;" type="text" id="endDate2" name="endDate" placeholder="Select date">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Training Program</td>
+                                    <td colspan="2" style="width: 100%">
+                                        <select name="trainingProgramCode" style="width: 100%">
+                                            <div th:each="response : ${trainingProgramResponses}">
+                                                <option th:value="${response.trainingProgramCode}" th:text="${response.trainingProgramCode + ' (' + response.name + ')'}"></option>
+                                            </div>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr style="display: none">
+                                    <td>Id</td>
+                                    <td><input type="text" name="classId" placeholder="id"></td>
+                                </tr>
+                            </table>
+                            <div class="bk_save_user" style="margin-bottom: 5px;">
+                                <button type="submit" class="button-save-user" style="background-color: #0f65c1">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--End: Content-->
+        <div class="clearfix"></div>
+
+        <br>
+        <br>
+        <br>
+        <form type="hidden" style="visibility: hidden" method="post" id="formRequestClassDetail" action="/class/detail" th:object="${ClassRequestUI}">
+            <input name="classId">
+        </form>
+        <form type="hidden" style="visibility: hidden" method="post" id="formRequestClassDuplicate" action="/class/duplicate" th:object="${ClassRequestUI}">
+            <input name="classId">
+        </form>
+        <form type="hidden" style="visibility: hidden" method="post" id="formRequestClassDelete" action="/class/delete" th:object="${ClassRequestUI}">
+            <input name="classId">
+        </form>
+
+    </div>
+    <!--Begin: Footer-->
+    <div th:replace="~{common/footer :: footer}"></div>
+    <!--End: Footer-->
+
+</div>
+
+<!-- Scripts -->
+<script>
+    $(document).ready(function () {
+        // Add User
+        const showFormButton = document.getElementById('showFormButton');
+        const formOverlay = document.getElementById('formOverlay');
+        const showFormActions = document.getElementById('showFormActions');
+        const formActions = document.getElementById('formActions');
+        const formEdit = document.getElementById('formEdit');
+        const showEditForm = document.getElementById('open-edit-form');
+
+        showFormButton.addEventListener('click', function () {
+            formOverlay.style.display = 'flex'; // Hiển thị overlay
+        });
+
+
+        showEditForm.addEventListener('click', function () {
+            formEdit.style.display= 'flex';
+        });
+
+
+        formOverlay.querySelector('.container').addEventListener('click', function (e) {
+            e.stopPropagation(); // Ngăn không đóng overlay khi bấm vào form
+        });
+
+        formEdit.querySelector('.container').addEventListener('click', function (e) {
+            e.stopPropagation(); // Ngăn không đóng form edit khi bấm vào form
+        });
+
+        formActions.querySelector('.container').addEventListener('click', function (e) {
+            e.stopPropagation(); // Ngăn không đóng form action khi bấm vào form
+        });
+
+    });
+
+</script>
+<script>
+    new DataTable('#example', {
+        "order": []
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var className = "";
+        var location = "";
+        var status = "";
+        var startDate;
+        var endDate;
+        var trainingProgramCode;
+        var classCode;
+
+        // Chọn ô input bằng id và áp dụng Flatpickr
+        const startDateInput = document.getElementById('startDate');
+        flatpickr(startDateInput, {
+            dateFormat: 'Y-m-d', // Định dạng ngày/tháng/năm (có thể tùy chỉnh)
+            minDate: 'today' // Chỉ cho phép chọn ngày trong tương lai
+        });
+
+        // Chọn ô input bằng id và áp dụng Flatpickr
+        const endDateInput = document.getElementById('endDate');
+        flatpickr(endDateInput, {
+            dateFormat: 'Y-m-d', // Định dạng ngày/tháng/năm (có thể tùy chỉnh)
+            minDate: 'today' // Chỉ cho phép chọn ngày trong tương lai
+        });
+
+        // Chọn ô input bằng id và áp dụng Flatpickr
+        const startDateInput2 = document.getElementById('startDate2');
+        flatpickr(startDateInput2, {
+            dateFormat: 'Y-m-d' // Định dạng ngày/tháng/năm (có thể tùy chỉnh)
+        });
+
+        // Chọn ô input bằng id và áp dụng Flatpickr
+        const endDateInput2 = document.getElementById('endDate2');
+        flatpickr(endDateInput2, {
+            dateFormat: 'Y-m-d' // Định dạng ngày/tháng/năm (có thể tùy chỉnh)
+        });
+
+
+        $(document).on('mouseenter', '.open-form', function () {
+            var row = $(this).closest('tr');
+            var rowOffset = row.offset();
+            var form = $('#formActions');
+            var formTop = rowOffset.top + row.height();
+            if ($(window).scrollTop() > 0) {
+                formTop = rowOffset.top + row.height() - $(window).scrollTop();
+            }
+            form.css({
+                top: formTop + 'px',
+                left:'0px'
+            });
+
+            // Extract data from the row
+            classCode = row.find('td:eq(8)').text();
+            className = row.find('td:eq(0)').text();
+            location = row.find('td:eq(6)').text();
+            status = row.find('td:eq(5) span').text();
+            startDate = row.find('td:eq(10)').text();
+            endDate = row.find('td:eq(11)').text();
+            trainingProgramCode = row.find('td:eq(9)').text();
+
+            // var secondLinkElement = form.find('#secondLink'); // Select by ID
+            // var linkForSecondB = '/class/duplicate/' + classCode;
+            // secondLinkElement.attr('href', linkForSecondB);
+            const formRequestClassDuplicate = document.getElementById('formRequestClassDuplicate');
+            const classIdInput1 = formRequestClassDuplicate.querySelector('[name="classId"]');
+            classIdInput1.value = classCode;
+
+
+            // Set the href attribute for the second <a> tag
+            // var fourthLinkElement = form.find('#fourthLink'); // Select by ID
+            // var linkForSecondD = '/class/delete/' + classCode;
+            // fourthLinkElement.attr('href', linkForSecondD);
+            const formRequestClassDelete = document.getElementById('formRequestClassDelete');
+            const classIdInput2 = formRequestClassDelete.querySelector('[name="classId"]');
+            classIdInput2.value = classCode;
+
+            // var fifthLinkElement = form.find('#fifthLink'); // Select by ID
+            // var linkForfifth = '/class/detail/' + classCode;
+            // fifthLinkElement.attr('href', linkForfifth);
+            const formRequestClassDetail = document.getElementById('formRequestClassDetail');
+            const classIdInput = formRequestClassDetail.querySelector('[name="classId"]');
+            classIdInput.value = classCode;
+
+
+            // You can now use these variables to populate your form or take any other actions
+            // console.log('Clicked on row with data:');
+            // console.log('Training Program Code: ' + trainingProgramCode);
+            // console.log('Name: ' + name);
+            // console.log('Created Date: ' + createdDate);
+            // console.log('Created By: ' + createdBy);
+            // console.log('Duration: ' + duration);
+
+            // Show or hide the formActions div
+            // $('#formActions').show();
+            form.show();
+        });
+        $(document).on('click', '.readDetailClass', function () {
+            const formRequestClassDetail = document.getElementById('formRequestClassDetail');
+            formRequestClassDetail.submit();
+        });
+        $(document).on('click', '.duplicateClassAction', function () {
+            const formRequestClassDuplicate = document.getElementById('formRequestClassDuplicate');
+            formRequestClassDuplicate.submit();
+        });
+        $(document).on('click', '.deleteClassAction', function () {
+            const formRequestClassDelete = document.getElementById('formRequestClassDelete');
+            formRequestClassDelete.submit();
+        });
+
+        $(document).on('click', '.open-edit-form', function () {
+            // Find the closest row to the clicked "..." part
+            // var form = $('#formEdit');
+            // form.show();
+
+            const formEdit = document.getElementById('formEdit');
+            const classNameInput = formEdit.querySelector('[name="className"]');
+            classNameInput.value = className;
+            const locationInput = formEdit.querySelector('[name="location"]');
+            locationInput.value = location;
+            const startDateInput = formEdit.querySelector('[name="startDate"]');
+            // startDateInput.value = startDate;
+            const parsedDate = moment(startDate, "ddd MMM DD HH:mm:ss ZZ YYYY");
+            const formattedStartDate = parsedDate.format("YYYY-MM-DD");
+            startDateInput.value = formattedStartDate;
+
+
+            const endDateInput = formEdit.querySelector('[name="endDate"]');
+            const parsedEndDate = moment(endDate, "ddd MMM DD HH:mm:ss ZZ YYYY");
+            const formattedEndDate = parsedEndDate.format("YYYY-MM-DD");
+            endDateInput.value = formattedEndDate;
+
+            const classIdInput = formEdit.querySelector('[name="classId"]');
+            classIdInput.value = classCode;
+            const planingCheckbox = formEdit.querySelector('input[value="Planing"]');
+            const openingCheckbox = formEdit.querySelector('input[value="Opening"]');
+            const scheduledCheckbox = formEdit.querySelector('input[value="Scheduled"]');
+            const completedCheckbox = formEdit.querySelector('input[value="Completed"]');
+            if (status === 'Planing') {
+                planingCheckbox.checked = true;
+                openingCheckbox.checked = false;
+                scheduledCheckbox.checked = false;
+                completedCheckbox.checked = false;
+            } else if (status === 'Opening') {
+                planingCheckbox.checked = false;
+                openingCheckbox.checked = true;
+                scheduledCheckbox.checked = false;
+                completedCheckbox.checked = false;
+            } else if (status === 'Scheduled') {
+                planingCheckbox.checked = false;
+                openingCheckbox.checked = false;
+                scheduledCheckbox.checked = true;
+                completedCheckbox.checked = false;
+            } else {
+                planingCheckbox.checked = false;
+                openingCheckbox.checked = false;
+                scheduledCheckbox.checked = false;
+                completedCheckbox.checked = true;
+            }
+            var selectElement = $('select[name="trainingProgramCode"]');
+            selectElement.find('option').each(function() {
+                if ($(this).val() === trainingProgramCode) {
+                    $(this).prop('selected', true); // Set the selected attribute to true for the matching option
+                } else{
+                    $(this).prop('selected', false);
+                }
+            });
+            formEdit.style.display = 'flex';
+        });
+
+        // Handle clicks anywhere outside the form to close it
+        // $(document).on('click', function (e) {
+        //     const formActions = document.getElementById('formActions');
+        //     formActions.addEventListener('click', function (e) {
+        //         if (e.target === formActions) {
+        //             formActions.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+        //         }
+        //     });
+        // });
+        $(document).on('click', '.close-form-action', function () {
+            const formActions = document.getElementById('formActions');
+            formActions.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+        });
+
+        $(document).on('click', function (e) {
+            const formOverlay = document.getElementById('formOverlay');
+            formOverlay.addEventListener('click', function (e) {
+                if (e.target === formOverlay) {
+                    formOverlay.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+        });
+
+        $(document).on('click', function (e) {
+            const formEdit = document.getElementById('formEdit');
+            formEdit.addEventListener('click', function (e) {
+                if (e.target === formEdit) {
+                    formEdit.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+        });
+
+
+    });
+</script>
+
+</body>
+</html>
+
+

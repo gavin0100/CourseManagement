@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Include your styles and other header content here -->
+</head>
+<body>
+<!-- Your page content here -->
+<p id="accessToken" th:text="${accessToken}"></p>
+
+<script th:inline="javascript">
+  // Get the access token from the <p> tag
+  var accessToken = document.getElementById("accessToken").textContent;
+
+  // Check if local storage is supported by the browser
+  if (typeof(Storage) !== "undefined") {
+    // Store the access token in local storage
+    localStorage.setItem("access_token", accessToken);
+    console.log("Access token stored in local storage.");
+  } else {
+    console.log("Local storage is not supported by this browser.");
+  }
+</script>
+</body>
+</html>

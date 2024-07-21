@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FrontEnd</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png" />
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css"
+    />
+
+    <link th:href="@{/assets/css/cs-skin-elastic.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/thai/style.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/thai/ui_users.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/thai/login/bootstrap.css}" rel="stylesheet"/>
+<!--    <link th:href="@{/assets/css/ui_users.css}" rel="stylesheet"/>-->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link
+        href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"
+        rel="stylesheet"
+/>
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff !important;
+        }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1 {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding: 3px;
+        }
+        #flotPie1 table {
+            top: 20px !important;
+            right: -10px !important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5 {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart {
+            height: 160px;
+        }
+
+        .bars-icon {
+            position: absolute;
+            top: 18px;
+        }
+
+
+        #saveButton {
+            display: none; /* Ẩn liên kết mặc định */
+        }
+
+    </style>
+
+    <script
+            src="https://kit.fontawesome.com/8f73a47761.js"
+            crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+</head>
+<body>
+<!--Begin: SideBar-->
+<div th:replace="~{common/side_bar :: side_bar}"></div>
+<!--End: SideBar-->
+
+
+<div id="right-panel" class="right-panel">
+    <!--Begin: Header-->
+    <div th:replace="~{common/header :: header}"></div>
+    <!--End: Footer-->
+
+    <!--Begin: Content-->
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <h2>View User</h2>
+            <div class="col-md-12 form-group">
+                <div id="errorMessage2" th:if="${message}" class="alert alert-success" role="alert"
+                     th:text="${message}">
+                </div>
+                <div id="errorMessage3" th:if="${errorMessage}" class="alert alert-danger" role="alert"
+                     th:text="${errorMessage}">
+                </div>
+            </div>
+            <div class="search-box">
+                <div class="search">
+                    <button class="my-button" id="showFormButton"><i class="fas fa-plus add"></i>Add User</button>
+                </div>
+            </div>
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th class="custom-column">ID</th>
+                    <th class="custom-column">Full name</th>
+                    <th class="custom-column">Email</th>
+                    <th class="custom-column">Date of birth</th>
+                    <th class="custom-column">Gender</th>
+                    <th class="custom-column">Type</th>
+                    <th class="custom-column"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="spandd" th:each="user : ${users}">
+                    <td th:text="${user.getUserId()}"></td>
+                    <td th:text="${user.getName()}"></td>
+                    <td th:text="${user.getEmail()}"></td>
+                    <td th:with="formattedDob=${#dates.format(user.getDob(), 'yyyy-MM-dd HH:mm:ss')}"
+                        th:text="${formattedDob}"></td>
+                    <td><i th:classappend="${user.getGender() == 'Male' ? 'fas fa-user' : 'fas fa-user female-icon'}"></i></td>
+                    <td>
+                                                <span th:text="${user.getUserPermissionResponse().getRole()}"
+                                                      th:classappend="${user.getUserPermissionResponse().getRole() == 'SUPER_ADMIN' ? 'super-admin' :
+                                                                        (user.getUserPermissionResponse().getRole() == 'CLASS_ADMIN' ? 'class-admin' :
+                                                                        (user.getUserPermissionResponse().getRole() == 'TRAINER' ? 'trainer' : ''))}">
+                                                </span>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropbtn"><i class="fas fa-ellipsis-h"></i></button>
+                            <div class="dropdown-content">
+                                <a href="#" class="edit-user-button" th:data-id="${user.getUserId()}"
+                                   th:data-name="${user.getName()}"
+                                   th:data-email="${user.getEmail()}"
+                                   th:data-phone="${user.getPhone()}"
+                                   th:with="formattedDob=${#dates.format(user.getDob(), 'yyyy-MM-dd HH:mm:ss')}"
+                                   th:data-dob="${formattedDob}"
+                                   th:data-gender="${user.getGender()}"
+                                   th:data-userpermissionId="${user.getUserPermissionResponse().getPermissionId()}"
+                                   th:data-status="${user.isStatus()}"
+                                   id="showEditUser" onclick="showEditForm(); return false;"><i class="fas fa-pencil-alt"></i>Edit user</a>
+                                <div class="sub-dropdown">
+                                    <a class="change-role-trigger" style="width: 160px;" href="#"><i class="fas fa-user"></i>Change role</a>
+                                    <div class="sub-dropdown-content">
+                                        <form th:object="${UserRequestUI}"  class="changeRole" method="post" th:action="@{/user/viewUser_changeRole}">
+                                            <input type="hidden" name="userId" th:value="${user.getUserId()}" />
+                                            <input type="hidden" name="modifiedById" th:value="${user.getUserPermissionResponse().getPermissionId()}" />
+<!--                                            <label for="userPermissionId">Select Role:</label>-->
+                                            <select name="userPermissionId">
+                                                <option value="1">Super Admin</option>
+                                                <option value="2">Class Admin</option>
+                                                <option value="3">Trainer</option>
+                                            </select>
+
+                                            <button type="submit">Save</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <a href="#" class="setActive">
+                                    <i th:classappend="${user.isStatus() ? 'fas fa-eye-slash'  : 'fa-sharp fa-solid fa-eye'}"></i>
+                                    <span style="border: none;
+                                                background: none;
+                                                padding: 0px;
+                                                color: #0D6EFD;"
+                                          th:text="${user.isStatus() ? 'De-activate' : 'Activate'}"></span>
+                                </a>
+<!--                                <a href="#"  th:data-id="${user.getUserId()}" onclick="testConfirmDialog(this.getAttribute('data-id'), '/user/viewUser')"><i class="fas fa-trash"></i>Delete user</a>-->
+                                <a href="#" class="delete"><i class="fas fa-trash"></i>Delete user</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+<!--            Add User-->
+            <div class="overlay" id="formOverlay">
+                <div class="container">
+                    <form th:object="${UserRequestUI}" class="form" method="post" th:action="@{/user/addUser}">
+                        <table>
+                            <tr>
+                                <th style="background-color: #2D3748;" colspan="3">Add a new user</th>
+                            </tr>
+                            <tr>
+                                <td>User type</td>
+                                <td>
+                                    <select name="userPermissionId" id="addpermissionId">
+                                        <option value="1">Super Admin</option>
+                                        <option value="2">Class Admin</option>
+                                        <option value="3">Trainer</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" name="name" placeholder="User name"></td>
+                            </tr>
+                            <tr>
+                                <td>Email address</td>
+                                <td><input type="text" name="email" placeholder="Email address"></td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td><input type="text" name="phone" placeholder="Phone number"></td>
+                            </tr>
+                            <tr>
+                                <td>Date of birth</td>
+                                <td>
+                                    <input type="date" id="dateOfBirth" name="dob">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>
+                                    <label><input type="radio" name="gender" value="Male" checked> Male</label>
+                                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="status" value="true" id="activeCheckbox" checked> Active
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="status" value="false" id="inactiveCheckbox"> Inactive
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="bk_save_user">
+                            <button type="submit" class="button-save-user">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+<!--            Edit user-->
+            <div class="overlay" id="formOverlayEditUser">
+                <div class="container">
+                    <form th:object="${UserRequestUI}" class="form" method="post" th:action="@{/user/viewUserEdit}">
+                        <table>
+                            <tr>
+                                <th style="background-color: #2D3748;" colspan="3">Edit user</th>
+                            </tr>
+                            <tr>
+                                <td>User type</td>
+                                <td>
+                                    <select name="userPermissionId" id="userpermissionId">
+                                        <option value="1">Super Admin</option>
+                                        <option value="2">Class Admin</option>
+                                        <option value="3">Trainer</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <input type="hidden" name="userId" id="userId" /> <!-- Input ẩn để lưu userId -->
+                                <td>Name</td>
+                                <td><input type="text" name="name" id="name" placeholder="User name"></td>
+                            </tr>
+                            <tr>
+                                <td>Email address</td>
+                                <td><input type="text" name="email" id="email" placeholder="Email address" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td><input type="text" name="phone" id="phone" placeholder="Phone number"></td>
+                            </tr>
+                            <tr>
+                                <td>Date of birth</td>
+                                <td>
+                                    <input type="date" id="dob" name="dob" placeholder="Select day">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td id="gender">
+                                    <label><input type="radio" name="gender" value="Male" id="maleCheck" checked> Male</label>
+                                    <label><input type="radio" name="gender" value="Female" id="femaleCheck"> Female</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td name="status" id="status" >
+                                    <label>
+                                        <input name="status" type="checkbox" value="true" id="activeCheckboxEdit"> Active
+                                    </label>
+                                    <label>
+                                        <input name="status" type="checkbox" value="false" id="inactiveCheckboxEdit"> Inactive
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="bk_save_user">
+                            <button type="submit" class="button-save-user">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <form th:each="user : ${users}" type="hidden" style="visibility: hidden" method="post" id="setActive" action="/user/setstatus" th:object="${UserRequestUI}">
+                <input name="userId" th:value="${user.getUserId()}">
+            </form>
+            <form th:each="user : ${users}" type="hidden" style="visibility: hidden" method="post" id="delete" action="/user/delete" th:object="${UserRequestUI}">
+                <input name="userId" th:value="${user.getUserId()}">
+            </form>
+
+
+
+        </div>
+        <!--End: Content-->
+        <div class="clearfix"></div>
+    </div>
+
+    <!--Begin: Footer-->
+    <div th:replace="~{common/footer :: footer}"></div>
+    <!--End: Footer-->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.setActive', function () {
+            const formSetActive = document.getElementById('setActive');
+            const row = $(this).closest('tr');
+            const userId = row.find('td:eq(0)').text();
+
+            formSetActive.querySelector('[name="userId"]').value = userId;
+            formSetActive.submit();
+        });
+        $(document).on('click', '.delete', function () {
+            const formDelete = document.getElementById('delete');
+            const row = $(this).closest('tr');
+            const userId = row.find('td:eq(0)').text();
+            // Set the values of trainingProgramId and syllabusId
+            formDelete.querySelector('[name="userId"]').value = userId;
+            formDelete.submit();
+        });
+    })
+
+</script>
+<!--Add user-->
+<script>
+
+    // Add User
+    const showFormButton = document.getElementById('showFormButton');
+    const formOverlay = document.getElementById('formOverlay');
+
+    showFormButton.addEventListener('click', function () {
+        formOverlay.style.display = 'flex'; // Hiển thị overlay
+    });
+
+    formOverlay.addEventListener('click', function (e) {
+        if (e.target === formOverlay) {
+            formOverlay.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+        }
+    });
+
+    formOverlay.querySelector('.container').addEventListener('click', function (e) {
+        e.stopPropagation(); // Ngăn không đóng overlay khi bấm vào form
+    });
+
+
+
+
+</script>
+
+<!--Edit User-->
+<script>
+
+    // Edit User
+    const showEditUser = document.getElementById('showEditUser');
+    const formOverlayEditUser = document.getElementById('formOverlayEditUser');
+
+    // Lấy giá trị data-id từ phần tử có id="showEditUser"
+    var userId = document.getElementById("showEditUser").getAttribute("data-id");
+
+
+    // Lấy tất cả các phần tử có class "edit-user-button"
+    var editUserButtons = document.querySelectorAll(".edit-user-button");
+
+    // Lặp qua từng liên kết và thêm sự kiện nhấp chuột
+    editUserButtons.forEach(function (button) {
+        button.addEventListener("click", function (event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+
+            var userId = button.getAttribute("data-id"); // Lấy giá trị data-id từ liên kết được nhấp
+            var userpermissionId = button.getAttribute("data-userpermissionId")
+            var name = button.getAttribute("data-name");
+            var email = button.getAttribute("data-email");
+            var phone = button.getAttribute("data-phone");
+            var dob = button.getAttribute("data-dob");
+            var gender = button.getAttribute("data-gender");
+            var status = button.getAttribute("data-status");
+
+
+
+
+            var userIdInput = document.getElementById("userId");
+            var userpermissionIdInput = document.getElementById("userpermissionId");
+            var nameInput = document.getElementById("name");
+            var emailInput = document.getElementById("email");
+            var phoneInput = document.getElementById("phone");
+            var dobInput = document.getElementById("dob");
+            var genderInput = document.getElementById("gender");
+            var statusInput = document.getElementById("status");
+
+
+            userIdInput.value = userId;
+            userpermissionIdInput.value = userpermissionId;
+            nameInput.value = name;
+            emailInput.value = email;
+            phoneInput.value = phone;
+            dobInput.value = dob;
+            genderInput.value = gender;
+            statusInput.value = status;
+
+
+            var radioInputs = genderInput.querySelectorAll('input[type="radio"]');
+            for (var i = 0; i < radioInputs.length; i++) {
+                if (radioInputs[i].value === gender) {
+                    radioInputs[i].checked = true;
+                } else {
+                    radioInputs[i].checked = false;
+                }
+            }
+            var checkInputs = statusInput.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkInputs.length; i++) {
+                if (checkInputs[i].value === status) {
+                    checkInputs[i].checked = true;
+                } else {
+                    checkInputs[i].checked = false;
+                }
+            }
+
+        });
+    });
+
+    formOverlayEditUser.addEventListener('click', function (e) {
+        if (e.target === formOverlayEditUser) {
+            formOverlayEditUser.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+        }
+    });
+
+    formOverlayEditUser.querySelector('.container').addEventListener('click', function (e) {
+        e.stopPropagation(); // Ngăn không đóng overlay khi bấm vào form
+    });
+</script>
+
+
+<script>
+    // Chọn ô input bằng id và áp dụng Flatpickr
+    const dateOfBirthInput = document.getElementById('dateOfBirth');
+    flatpickr(dateOfBirthInput, {
+        dateFormat: 'Y-m-d H:i:S', // Định dạng ngày/tháng/năm (có thể tùy chỉnh)
+        maxDate: 'today', // Chỉ cho phép chọn ngày trong tương lai
+        defaultDate: 'today' // Đặt ngày mặc định là ngày hiện tại
+    });
+
+    // Chọn ô input bằng id và áp dụng Flatpickr
+    const dateOfBirthInputEdit = document.getElementById('dob');
+    flatpickr(dateOfBirthInputEdit, {
+        dateFormat: 'Y-m-d H:i:S', // Định dạng ngày/tháng/năm (có thể tùy chỉnh)
+        maxDate: 'today', // Chỉ cho phép chọn ngày trong tương lai
+    });
+
+    const activeCheckbox = document.getElementById('activeCheckbox');
+    const inactiveCheckbox = document.getElementById('inactiveCheckbox');
+
+    activeCheckbox.addEventListener('change', function() {
+        if (activeCheckbox.checked) {
+            // Nếu ô "Active" được chọn, hủy chọn ô "Inactive"
+            inactiveCheckbox.checked = false;
+        }
+    });
+
+    inactiveCheckbox.addEventListener('change', function() {
+        if (inactiveCheckbox.checked) {
+            // Nếu ô "Inactive" được chọn, hủy chọn ô "Active"
+            activeCheckbox.checked = false;
+        }
+    });
+
+
+
+    const activeCheckboxEdit = document.getElementById('activeCheckboxEdit');
+    const inactiveCheckboxEdit = document.getElementById('inactiveCheckboxEdit');
+
+    activeCheckboxEdit.addEventListener('change', function() {
+        if (activeCheckboxEdit.checked) {
+            // Nếu ô "Active" được chọn, hủy chọn ô "Inactive"
+            inactiveCheckboxEdit.checked = false;
+        }
+    });
+
+    inactiveCheckboxEdit.addEventListener('change', function() {
+        if (inactiveCheckboxEdit.checked) {
+            // Nếu ô "Inactive" được chọn, hủy chọn ô "Active"
+            activeCheckboxEdit.checked = false;
+        }
+    });
+
+</script>
+
+<script>
+    // Lấy tham chiếu đến các phần tử HTML
+    const editUserLink = document.getElementById("showEditUser");
+    const formOverlay = document.getElementById("formOverlayEditUser");
+
+    // Thêm sự kiện "click" vào liên kết "Edit user"
+    editUserLink.addEventListener("click", function(event) {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+
+        // Hiển thị form
+        formOverlay.style.display = "flex";
+    });
+</script>
+
+<script>
+    function showEditForm() {
+        // Lấy tham chiếu đến form và hiển thị nó
+        const formOverlay = document.getElementById("formOverlayEditUser");
+        formOverlay.style.display = "flex";
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    new DataTable('#example', {
+        "order": []
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+
+table{
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
+th {
+    color: white;
+    background-color: #2D3748;
+    font-weight: bold;
+}
+table span{
+    width: 125px;
+    background-color: #2D3748;
+    border-radius: 15px;
+    padding: 8px;
+    color: white;
+}
+.spandd td{
+    line-height: 40px;
+    text-align: left;
+}
+/* CSS cho ô tìm kiếm */
+.search-box {
+    position: relative;
+}
+
+.search-box input[type="text"] {
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 200px;
+    outline: none;
+    margin: 10px;
+}
+.form-control .form-control-sm{
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 200px;
+    outline: none;
+    margin: 10px;
+}
+.search {
+    width: 100%;
+    text-align: right;
+    position:absolute;
+}
+
+.search input[type="text"] {
+    padding-left: 30px;
+}
+
+.search .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+.my-button, .filter-button {
+    padding: 10px 20px;
+    background-color: #1784a3;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.my-button .add{
+    margin-right: 5px;
+}
+.filter-button .filter-icon{
+    margin-right: 5px;
+}
+/*hiện thị danh sách*/
+.listPage{
+    padding: 10px;
+    text-align: center;
+    list-style: none;
+}
+.listPage li{
+    background-color: #ffffff;
+    padding: 15px;
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 30%;
+}
+.listPage .active{
+    background-color: #2D3748;
+    color: #fff;
+}
+.female-icon {
+    color: deeppink;
+}
+
+.update-permission-button, .button-save{
+    padding: 8px 30px;
+    background-color: #2D3748;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 0px 0px 10px 80%;
+}
+.permission{
+    margin-right: 5px;
+
+}
+.row{
+    display: flex;
+    flex-direction: column-reverse;
+    /* justify-content: left; */
+    align-items: flex-start;
+}
+.dataTables_filter{
+    float: left;
+}
+
+.super-admin {
+    background-color: green;
+    display: inline-block;
+    height: 40px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.class-admin {
+    background-color: orange;
+    display: inline-block;
+    height: 40px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.trainer {
+    background-color: #2D3748;
+    width: 125px;
+    display: inline-block;
+    height: 40px;
+     text-align: center;
+    line-height: 20px;
+}
+
+
+.centered-icon {
+    text-align: center; /* Căn giữa biểu tượng ngang */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.overlay .container {
+    max-width: 500px;
+    padding: 0px;
+    background-color: white;
+    /*border: 1px solid #ffffff;*/
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 500px;
+    min-width: 500px;
+}
+
+.form {
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+}
+.form table td {
+    border: none;
+    text-align: left;
+    font-weight: bold;
+ }
+.form td label {
+    margin-right: 30px;
+}
+.form tr th {
+    background-color: #2D3748;
+    border: none;
+    border-radius: 20px 20px 0 0;
+}
+
+.bk_save_user{
+    background-color: white;
+    border-radius: 20px;
+}
+.button-save-user{
+    padding: 8px 30px;
+    background-color: #2D3748;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.form input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form select:focus {
+    background-color: #f0f0f0;
+}
+
+.custom-column{
+    border-right: solid 1px white;
+    background-color: #1e61d1 !important;
+    color: white !important;
+}
+
+.training-program-drafting{
+    background-color: #1268b1;
+}
+
+.training-program-active{
+    background-color: #1fb40d;
+}
+
+.training-program-inactive{
+    background-color: #f50f0f;
+}
+
+.class-planning{
+    background-color: #1268b1;
+    color: white;
+}
+
+.class-opening{
+    background-color: #27b112;
+    color: white;
+}
+
+.class-scheduled{
+    background-color: #ea5511;
+    color: white;
+}
+
+.class-completed{
+    background-color: #061b9b;
+    color: white;
+}
+
+/* styles.css or your custom CSS file */
+.pointer {
+    cursor: pointer;
+}
+

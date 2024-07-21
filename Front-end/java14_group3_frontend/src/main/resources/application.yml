@@ -1,0 +1,18 @@
+server:
+  port: 3030
+# DevTools Properties
+spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false

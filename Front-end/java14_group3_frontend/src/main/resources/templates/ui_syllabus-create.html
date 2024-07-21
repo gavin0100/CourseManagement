@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>FrontEnd</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png"/>
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png"/>
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css"
+    />
+
+    <link th:href="@{/assets/Thang/css/cs-skin-elastic.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/ui_users.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/login/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/syllabus/syllabus-create.css}" rel="stylesheet"/>
+    <!--    <link th:href="@{/assets/css/ui_users.css}" rel="stylesheet"/>-->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"
+            rel="stylesheet"
+    />
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff !important;
+        }
+
+        .traffic-chart {
+            min-height: 335px;
+        }
+
+        #flotPie1 {
+            height: 150px;
+        }
+
+        #flotPie1 td {
+            padding: 3px;
+        }
+
+        #flotPie1 table {
+            top: 20px !important;
+            right: -10px !important;
+        }
+
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #flotLine5 {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+
+        #cellPaiChart {
+            height: 160px;
+        }
+
+        .bars-icon {
+            position: absolute;
+            top: 18px;
+        }
+
+
+        #saveButton {
+            display: none; /* Ẩn liên kết mặc định */
+        }
+
+    </style>
+
+    <script
+            src="https://kit.fontawesome.com/8f73a47761.js"
+            crossorigin="anonymous"
+    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <script src="/assets/js/syllabusCreate.js"></script>
+</head>
+<body>
+<!--Begin: SideBar-->
+<div th:replace="~{common/side_bar :: side_bar}"></div>
+<!--End: SideBar-->
+
+
+<div id="right-panel" class="right-panel">
+    <!--Begin: Header-->
+    <div th:replace="~{common/header :: header}"></div>
+    <!--End: Footer-->
+
+    <!--Begin: Content-->
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <h2>Create Syllabus</h2>
+
+            <div id="container" class="container mt-5">
+                <div class="progress px-1" style="height: 3px; margin: 0 10px">
+                    <div
+                            class="progress-bar"
+                            role="progressbar"
+                            style="width: 0%"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                    ></div>
+                </div>
+                <div
+                        class="step-container d-flex justify-content-between"
+                        style="padding: 0 12px"
+                >
+                    <div class="step-circle" onclick="displayStep(1)">1</div>
+                    <div class="step-circle" onclick="displayStep(2)">2</div>
+                    <div class="step-circle" onclick="displayStep(3)">3</div>
+                </div>
+
+                <div class="step-container d-flex justify-content-between">
+                    <div class="step-custom">General</div>
+                    <div class="step-custom">Outline</div>
+                    <div class="step-custom">Others</div>
+                </div>
+                <span id="instructions" style="color: gray; font-size: 100%; display: none"></span>
+                <form id="multi-step-form"
+                      th:object="${syllabus}"
+                      th:action="@{/syllabus/create}"
+                      method="post">
+                    <div
+                            class="syllabus-property step-container d-flex justify-content-between"
+                    >
+                        <div class="syllabus-name">
+                            <label
+                                    for="syllabbus-name"
+                                    style="margin-right: 10px; font-weight: bold"
+                            >Syllabus name:
+                            </label>
+                            <input
+                                    id="syllabbus-name"
+                                    type="text"
+                                    name="name"
+                                    placeholder="syllabus name"
+                                    style="width: 250px; border-radius: 10px"
+                                    required
+                                    th:field="${syllabus.topicName}"
+                            />
+                        </div>
+                        <div class="syllabus-code">
+                            <label style="margin-right: 10px; font-weight: bold"
+                            >Code:
+                            </label>
+                            <span>any code</span>
+                        </div>
+                        <div class="syllabus-version">
+                            <label
+                                    for="syllabbus-version"
+                                    style="margin-right: 10px; font-weight: bold"
+                            >Version:
+                            </label>
+                            <input
+                                    id="syllabbus-version"
+                                    type="text"
+                                    name="version"
+                                    placeholder="1.0"
+                                    style="width: 40px; border-radius: 10px"
+                                    value="1.0"
+                                    th:field="${syllabus.version}"
+                            />
+                        </div>
+                    </div>
+                    <div class="step step-1">
+                        <!-- Step 1 form fields here -->
+                        <h3 class="title-custom">General</h3>
+                        <div class="mb-3 form-fields">
+                            <div class="d-flex mb-3">
+                                <label>Level: </label>
+                                <select style="width: 120px" name="level" id="syllabus-level" th:field="${syllabus.level}">
+                                    <!--                                    <option value="All level" selected="select">-->
+                                    <!--                                        All level-->
+                                    <!--                                    </option>-->
+                                    <option value="Expert" selected="select">Expert</option>
+                                    <option value="Advanced">Advanced</option>
+                                    <option value="Advanced">Normal</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Easy">Easy</option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex mb-3">
+                                <label for="attendee-number" class="form-label"
+                                >Attendee number:
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="attendee-number"
+                                        name="field1"
+                                        required
+                                        th:field="${syllabus.trainingAudience}"
+                                />
+                            </div>
+
+                            <div class="d-flex mb-3">
+                                <label for="technical-requirement" class="form-label"
+                                >Technical Requirement:
+                                </label>
+                                <textarea
+                                        style="height: 140px"
+                                        type="text"
+                                        class="form-control"
+                                        id="technical-requirement"
+                                        name="technicalGroup"
+                                        required
+                                        th:field="${syllabus.technicalGroup}"
+                                ></textarea>
+                            </div>
+
+                            <div class="d-flex mb-3">
+                                <label for="course-description" class="form-label"
+                                >Course Objectives</label
+                                >
+                                <textarea
+                                        style="height: 140px"
+                                        type="text"
+                                        class="form-control"
+                                        id="course-description"
+                                        name="courseObjective"
+                                        required
+                                        th:field="${syllabus.courseObjective}"
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: right">
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #d45b13;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    type="button"
+                                    class="btn btn-primary next-step"
+                                    id="btn-next-general"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="step step-2">
+                        <!-- Step 2 form fields here -->
+                        <h3 class="title-custom">Outline</h3>
+                        <div id="days">
+                            <!-- Đây là nơi hiển thị danh sách các unit -->
+                        </div>
+                        <button id="add-day-button" class="btn btn-primary">
+                            <i class="fa-solid fa-circle-plus"></i> Add Day
+                        </button>
+
+                        <!-- Overlay -->
+                        <div class="overlay" id="formOverlay">
+                            <div class="container">
+                                <div
+                                        class="form"
+                                        id="formContent"
+                                        action="/syllabus/outline/contentInUnit"
+                                >
+                                    <table>
+                                        <tr>
+                                            <th style="background-color: #0f65c1" colspan="3">
+                                                New Content
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Name</td>
+                                            <td colspan="2">
+                                                <input
+                                                        style="width: 330px"
+                                                        type="text"
+                                                        name="contentName"
+                                                        id="contentName"
+                                                        placeholder="Name"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Output standard</td>
+                                            <td colspan="2">
+                                                <select
+                                                        name="learningObjectiveId"
+                                                        id="learningObjectiveId"
+                                                        style="width: 330px"
+                                                >
+                                                    <!-- <div th:each="response : ${trainingProgramResponses}">
+                                                                                <option th:value="${response.trainingProgramCode}" th:text="${response.trainingProgramCode + ' (' + response.name + ')'}"></option>
+                                                                            </div> -->
+                                                    <!--                                                    <option value="1" selected="select">HS4O</option>-->
+                                                    <!--                                                    <option value="2">SP3k</option>-->
+                                                    <!--                                                    <option value="3">CS57</option>-->
+                                                    <div th:each="learningObjective : ${learningObjectiveResponseList}">
+                                                        <option th:value="${learningObjective.getCode()}" th:text="${learningObjective.getName()}"></option>
+                                                    </div>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Training time</td>
+                                            <td colspan="2">
+                                                <input
+                                                        style="width: 330px"
+                                                        type="text"
+                                                        id="trainingTime"
+                                                        name="trainingTime"
+                                                        placeholder="Training time"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Delivery type</td>
+                                            <td colspan="2">
+                                                <select
+                                                        name="deliveryType"
+                                                        id="deliveryType"
+                                                        style="width: 330px"
+                                                >
+                                                    <!-- <div th:each="response : ${trainingProgramResponses}">
+                                                                                <option th:value="${response.trainingProgramCode}" th:text="${response.trainingProgramCode + ' (' + response.name + ')'}"></option>
+                                                                            </div> -->
+                                                    <option value="1" selected="selected">
+                                                        Assignment/Lab
+                                                    </option>
+                                                    <option value="2">Concept/Lecture</option>
+                                                    <option value="3">Guide/Review</option>
+                                                    <option value="4">Test/Quiz</option>
+                                                    <option value="5">Exam</option>
+                                                    <option value="5">Seminar/Workshop</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="width: 110px">Status</td>
+                                            <td>
+                                                <input
+                                                        type="radio"
+                                                        name="status"
+                                                        value="Online"
+                                                        checked
+                                                />
+                                                Online
+                                                <input type="radio" name="status" value="Offline" />
+                                                Offline
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="bk_save_content" style="margin-bottom: 5px">
+                                        <button
+                                                type="submit"
+                                                class="button-save-content"
+                                                style="background-color: #0f65c1"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between">
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #2d3748;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    type="button"
+                                    class="btn btn-primary prev-step"
+                            >
+                                Previous
+                            </button>
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #d45b13;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    onmouseover="this.style.opacity='0.8';"
+                                    onmouseout="this.style.opacity='1';"
+                                    type="button"
+                                    class="btn btn-primary next-step"
+                                    id="btn-next-outline"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="step step-3">
+                        <!-- Step 3 form fields here -->
+                        <h3 class="title-custom">Others</h3>
+                        <div class="mb-3" style="display: flex">
+                            <label
+                                    style="width: 180px; font-weight: bold"
+                                    class="form-label"
+                            >Training Principles:</label
+                            >
+                            <textarea
+                                    style="
+                    flex: 1;
+                    height: 140px;
+                    border: solid black 1px;
+                    resize: none;
+                    overflow-y: auto;
+                  "
+                                    type="text"
+                                    class="form-control"
+                                    id="training-Principles"
+                                    name="field1"
+                                    required
+                                    th:field="${syllabus.trainingPrinciples}"
+                            ></textarea>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between">
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #2d3748;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    type="button"
+                                    class="btn btn-primary prev-step"
+                            >
+                                Previous
+                            </button>
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #d45b13;
+                    font-weight: bold;
+                  "
+                                    type="submit"
+                                    class="btn btn-success"
+                                    id="btn-submit-others"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--            <form id="hidden-form" style="display: none;" action="/syllabus/create/outline" method="post">-->
+            <!--                <input type="hidden" name="day" />-->
+            <!--                <input type="hidden" name="unitName" />-->
+            <!--                &lt;!&ndash; add other necessary fields &ndash;&gt;-->
+            <!--            </form>-->
+        </div>
+        <!--End: Content-->
+        <div class="clearfix"></div>
+    </div>
+
+    <!--Begin: Footer-->
+    <div th:replace="~{common/footer :: footer}"></div>
+    <!--End: Footer-->
+</div>
+
+<!-- Scripts Step -->
+<script>
+    var currentStep = 1;
+    var updateProgressBar;
+
+    function displayStep(stepNumber) {
+        if (stepNumber >= 1 && stepNumber <= 3) {
+            $(".step-" + currentStep).hide();
+            $(".step-" + stepNumber).show();
+            currentStep = stepNumber;
+            updateProgressBar();
+        }
+    }
+
+    $(document).ready(function () {
+        $(document).on('click', function (e) {
+            const formOverlay = document.getElementById('formOverlay');
+            formOverlay.addEventListener('click', function (e) {
+                if (e.target === formOverlay) {
+                    formOverlay.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+
+        });
+        $('#multi-step-form').find('.step').slice(1).hide();
+
+        $(".next-step").click(function () {
+            if (currentStep < 3) {
+                $(".step-" + currentStep).addClass("animate__animated animate__fadeOutLeft");
+                currentStep++;
+                setTimeout(function () {
+                    $(".step").removeClass("animate__animated animate__fadeOutLeft").hide();
+                    $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInRight");
+                    updateProgressBar();
+                }, 500);
+            }
+        });
+
+        $(".prev-step").click(function () {
+            if (currentStep > 1) {
+                $(".step-" + currentStep).addClass("animate__animated animate__fadeOutRight");
+                currentStep--;
+                setTimeout(function () {
+                    $(".step").removeClass("animate__animated animate__fadeOutRight").hide();
+                    $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInLeft");
+                    updateProgressBar();
+                }, 500);
+            }
+        });
+
+        updateProgressBar = function () {
+            var progressPercentage = ((currentStep - 1) / 2) * 100;
+            $(".progress-bar").css("width", progressPercentage + "%");
+        }
+    });
+</script>
+
+<!-- Script Create unit and day -->
+<script>
+    // Get all input elements on the page
+    const inputElements = document.querySelectorAll('input');
+    const texeAreaElements = document.querySelectorAll('textarea');
+
+    // Add an input event listener to each input element
+    inputElements.forEach(input => {
+        input.addEventListener('input', function() {
+            var instruction_span =  document.getElementById("instructions");
+            instruction_span.innerText = "Chỉ được nhập chữ thường, chữ hoa, số, '@', '.', '!'";
+            instruction_span.style.display = 'flex';
+        });
+        input.addEventListener('blur', function() {
+            var instruction_span =  document.getElementById("instructions");
+            instruction_span.style.display = 'none';
+        });
+    });
+    texeAreaElements.forEach(input => {
+        input.addEventListener('input', function() {
+            var instruction_span =  document.getElementById("instructions");
+            instruction_span.innerText = "Chỉ được nhập chữ thường, chữ hoa, số, '@', '.', '!'";
+            instruction_span.style.display = 'flex';
+        });
+        input.addEventListener('blur', function() {
+            var instruction_span =  document.getElementById("instructions");
+            instruction_span.style.display = 'none';
+        });
+    });
+    let dayCount = 1;
+    let unitCount = {};
+
+    // Data of all Content
+    let formDataArray = [];
+
+    const syllabus = {};
+    const units = [];
+    let contents = [];
+
+    const nextBtn_general = document.getElementById("btn-next-general");
+    const nextBtn_outline = document.getElementById("btn-next-outline");
+    const submitBtn_others = document.getElementById("btn-submit-others");
+
+    //Event click Next Button in step General
+    nextBtn_general.addEventListener("click", function (e) {
+        let syllabusName = document.getElementById("syllabbus-name");
+        let syllabusVersion = document.getElementById("syllabbus-version");
+        let syllabusLevel = document.getElementById("syllabus-level");
+        let textLevel = syllabusLevel.options[syllabusLevel.selectedIndex].text;
+        let syllabusAttendeeNumber = document.getElementById("attendee-number");
+        let syllabusTechnicalRequirment = document.getElementById(
+            "technical-requirement"
+        );
+        let syllabusCourseDescription =
+            document.getElementById("course-description");
+        let syllabustrainingPrinciples = document.getElementById(
+            "training-Principles"
+        );
+
+        Object.assign(syllabus, {
+            topicName: `${syllabusName.value}`,
+            technicalGroup: `${syllabusTechnicalRequirment.value}`,
+            version: `${syllabusVersion.value}`,
+            trainingAudience: `${syllabusAttendeeNumber.value}`,
+            trainingPrinciples: `${syllabustrainingPrinciples.value}`,
+            publishStatus: `Draft`,
+            duration: ``,
+            level: `${textLevel}`,
+            courseObjective: `${syllabusCourseDescription.value}`,
+        });
+        console.log(syllabus);
+    });
+
+    // Even click Next Button in step Outline
+    nextBtn_outline.addEventListener("click", function (event) {
+        fetch("/syllabus/create/outline/contentInUnit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contents),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                // Handle success, if needed
+            })
+            .catch((error) => {
+                console.error(
+                    "There was a problem with the fetch operation:",
+                    error
+                );
+            });
+    });
+
+    // submitBtn_others.addEventListener('click', function (event) {
+    //     let syllabustrainingPrinciples = document.getElementById(
+    //         "training-Principles"
+    //     );
+    //
+    //     syllabus.trainingPrinciples = syllabustrainingPrinciples
+    //
+    //     const formData = new URLSearchParams();
+    //     Object.keys(syllabus).forEach((key) => {
+    //         formData.append(key, syllabus[key]);
+    //     });
+    //
+    //     fetch("/syllabus/create", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+    //         },
+    //         body: formData,
+    //     })
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 throw new Error("Network response was not ok");
+    //             }
+    //             // Handle success, if needed
+    //         })
+    //         .catch((error) => {
+    //             console.error(
+    //                 "There was a problem with the fetch operation:",
+    //                 error
+    //             );
+    //         });
+    // })
+
+    // Lắng nghe sự kiện khi nhấn nút "Add Day"
+    document
+        .getElementById("add-day-button")
+        .addEventListener("click", function (event) {
+            event.preventDefault(); // Ngăn chặn mặc định của nút submit trong form
+            confirmAddDay();
+        });
+
+    function confirmAddDay() {
+        if (dayCount !== 1) {
+            const userConfirmed = confirm(
+                "Khi bạn thêm Day mới thì không thể thêm Unit vào Day trước đó nữa, mà chỉ có thể thêm Nội dung. Bạn có chắc chắn với quyết định này?"
+            );
+            if (userConfirmed) {
+                addDay();
+            }
+        } else {
+            addDay();
+        }
+    }
+
+    // Hàm thêm day mới
+    function addDay() {
+        if (dayCount > 1) {
+            const removeAddUnitBtn = document.getElementById(
+                `btn-addUnit-day${dayCount - 1}`
+            );
+            console.log(removeAddUnitBtn);
+            removeAddUnitBtn.remove();
+        }
+
+        const dayContainer = document.getElementById("days");
+        const day = document.createElement("ul");
+        day.className = `day${dayCount} day-custom`;
+        day.style = "padding-left: 0rem";
+
+        const htmlDay = `<div style="background-color: #2D3748; color: #fff; margin-top: 0; padding: 6px 10px 0px 4px;"><h4 style="display: inline-block; margin-top: 0px; margin-bottom: 6px;">Day ${dayCount}</h4> <i style="color: red" id="btn-trashDay-${dayCount}" class="fa-solid fa-trash"></i></div>`;
+        day.innerHTML = htmlDay;
+
+        // Nút "Add Day" trong unit
+        const addUnitButton = document.createElement("button");
+        addUnitButton.id = `btn-addUnit-day${dayCount}`;
+        addUnitButton.classList.add("add-unit-button");
+        addUnitButton.classList.add("btn");
+        addUnitButton.classList.add("btn-primary");
+
+        const htmlAddUnbitBtn = `<i class="fa-solid fa-circle-plus""></i> Add Unit`;
+        addUnitButton.innerHTML = htmlAddUnbitBtn;
+
+        let dayInfunction = dayCount;
+
+        if (!unitCount[dayInfunction] && dayInfunction === 1) {
+            unitCount[dayInfunction] = 1;
+        } else {
+            unitCount[dayInfunction] = unitCount[dayInfunction - 1];
+        }
+
+        addUnitButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            addUnit(event, dayInfunction, unitCount[dayInfunction]);
+            unitCount[dayInfunction]++;
+        });
+
+        day.appendChild(addUnitButton);
+
+        dayContainer.appendChild(day);
+
+        const trashButton = document.getElementById(`btn-trashDay-${dayCount}`);
+        trashButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            confirmTrash(event, day, dayInfunction, unitCount);
+        });
+
+        dayCount++;
+    }
+
+    function confirmTrash(event, day, dayInfunction, unitCount) {
+        const userConfirmed = confirm(
+            "Bạn có muốn xóa hết content trong Unit này không?"
+        );
+        if (userConfirmed) {
+            trash(event, day, dayInfunction, unitCount);
+        }
+    }
+
+    function trash(event, day, dayInfunction, unitCount) {
+        const unitList = day.querySelectorAll("li");
+
+        // Lặp qua từng thẻ li và xóa chúng
+        unitList.forEach(function (unit) {
+            const contentList = unit.querySelectorAll(".content-data-container");
+            contentList.forEach(function (content) {
+                content.remove();
+            });
+        });
+
+        for (let index = 1; index < unitCount[dayInfunction]; index++) {
+            contents = contents.filter(function (content) {
+                return !(
+                    content.day === String(dayInfunction) &&
+                    content.unit === `Unit ${index}`
+                );
+            });
+        }
+    }
+
+    // Hàm thêm unit trong day
+    function addUnit(event, dayInfunction, unitInfunction) {
+        const day = event.target.parentElement;
+        const unit = document.createElement("li");
+        unit.className = "unit";
+        unit.style = "list-style: none";
+
+        htmlUnit = `<span>Unit ${unitInfunction}</span> <input type='text' name='unitName' class='input-unitName' placeholder='Unit name' style='padding: 3.4px; margin: 0px 20px 0px 30px;'> <button class='btn btn-primary btn-create-unit'>Create</button>`;
+
+        unit.innerHTML = htmlUnit;
+
+        // const plusContentBtn = document.createElement("div");
+        // plusContentBtn.classList = "plus-content-btn";
+        // htmlPlusContent = `<i class="fa-solid fa-circle-plus"></i>`;
+        // plusContentBtn.innerHTML = htmlPlusContent;
+
+        const inputValue = unit.querySelector(`.input-unitName`);
+        const createUnitBtn = unit.querySelector(".btn-create-unit");
+
+        // function onPlusContentClick(event) {
+        //   event.preventDefault();
+        //   // Gọi hàm plusContent khi nhút plus được nhấn
+        //   plusContent(event, inputValue, dayInfunction);
+        // }
+        // // Thêm listener mới
+        // plusContentBtn.addEventListener("click", onPlusContentClick);
+
+        createUnitBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            createUnit(event, inputValue, dayInfunction, unitInfunction);
+        });
+
+        day.insertBefore(unit, event.target);
+
+        // unit.appendChild(plusContentBtn);
+    }
+
+    function createUnit(event, inputValue, dayInfunction, unitInfunction) {
+        event.preventDefault();
+
+        const unit = event.target.parentElement;
+        const value = inputValue.value;
+
+        const newUnit = {
+            unitName: `${value}`,
+            numberOfHours: "",
+            day: dayInfunction,
+            unit: `Unit ${unitInfunction}`,
+        };
+        units.push(newUnit);
+        console.log("day la units", JSON.stringify(units));
+
+        fetch("/syllabus/create/outline", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUnit),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                // Handle success, if needed
+            })
+            .catch((error) => {
+                console.error(
+                    "There was a problem with the fetch operation:",
+                    error
+                );
+            });
+
+        // console.log(dayInfunction, inputValue.value);
+        // console.log(formDataArray);
+        // const contentData = formDataArray.filter(
+        //   (data) =>
+        //     data.day.toString() === dayInfunction.toString() &&
+        //     data.unitName.toString() == inputValue.value.toString()
+        // );
+
+        // // Create a FormData object and append the parameters
+        // const formData = new FormData();
+        // formData.append("day", dayInfunction);
+        // formData.append("unitName", value);
+
+        // console.log(formData);
+        // console.log(JSON.stringify(contentData));
+
+        const plusContentBtn = document.createElement("div");
+        plusContentBtn.classList = "plus-content-btn";
+        htmlPlusContent = `<i class="fa-solid fa-circle-plus"></i>`;
+        plusContentBtn.innerHTML = htmlPlusContent;
+        // Thêm sự kiện cho nút plusContent này
+        function onPlusContentClick(event) {
+            event.preventDefault();
+            // Gọi hàm plusContent khi nhút plus được nhấn
+            plusContent(event, inputValue, dayInfunction, unitInfunction);
+        }
+        // Thêm listener mới
+        plusContentBtn.addEventListener("click", onPlusContentClick);
+
+        //Use fetch to send a POST request
+        // fetch("/syllabus/create/outline", {
+        //   method: "POST",
+        //   body: formData,
+        // })
+        //   .then((response) => {
+        //     if (!response.ok) {
+        //       throw new Error("Network response was not ok");
+        //     }
+        //     // Handle success, if needed
+        //   })
+        //   .catch((error) => {
+        //     console.error(
+        //       "There was a problem with the fetch operation:",
+        //       error
+        //     );
+        //   });
+
+        // fetch("/syllabus/create/outline/contentInUnit", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(contentData),
+        // })
+        //   .then((response) => {
+        //     if (!response.ok) {
+        //       throw new Error("Network response was not ok");
+        //     }
+        //     // Handle success, if needed
+        //   })
+        //   .catch((error) => {
+        //     console.error(
+        //       "There was a problem with the fetch operation:",
+        //       error
+        //     );
+        //   });
+
+        // Tạo thẻ <p> mới và đặt nội dung
+        const paragraph = document.createElement("p");
+        paragraph.classList = "unit-Name";
+        paragraph.innerText = value;
+
+        // Thêm thẻ <p> vào cùng cha với ô input
+        unit.insertBefore(paragraph, inputValue);
+
+        // Ẩn ô input
+        inputValue.style.display = "none";
+
+        // Ẩn nút "Create" và hiển thị nút "Change"
+        const createUnitBtn = unit.querySelector(".btn-create-unit");
+        createUnitBtn.style.display = "none";
+
+        // Ẩn nút "plus" sau khi nhấn Create
+        // const plusContentBtn = unit.querySelector(".plus-content-btn");
+        // plusContentBtn.style.display = "none";
+
+        // Tạo nút "Change" và thêm vào cùng cha với ô input
+        const changeUnitBtn = document.createElement("i");
+        changeUnitBtn.classList = "fa-solid fa-pencil btn-change-unit";
+
+        changeUnitBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            // Gọi hàm changeNameUnit khi nút "Change" được nhấn
+            changeUnit(event, inputValue);
+        });
+
+        unit.appendChild(changeUnitBtn);
+        unit.appendChild(plusContentBtn);
+    }
+
+    function plusContent(event, inputValue, dayInfunction, unitInfunction) {
+        event.preventDefault();
+        const formOverlay = document.getElementById("formOverlay");
+        formOverlay.style.display = "flex";
+
+        const saveContentBtn = formOverlay.querySelector(
+            ".button-save-content"
+        );
+
+        function onSaveContentClick(event) {
+            event.preventDefault();
+            // Gọi hàm plusContent khi nhút plus được nhấn
+            saveContent(event, inputValue, dayInfunction, unitInfunction);
+            // Gỡ bỏ listener cũ nếu có
+            saveContentBtn.removeEventListener("click", onSaveContentClick);
+        }
+        // Thêm listener mới
+        saveContentBtn.addEventListener("click", onSaveContentClick);
+    }
+
+    function saveContent(event, inputValue, dayInfunction, unitInfunction) {
+        event.preventDefault();
+        const formOverlay = document.getElementById("formOverlay");
+        formOverlay.style.display = "none";
+
+        const form = document.getElementById("formContent");
+
+        const nameContent = document.getElementById("contentName");
+        const outPut_Standard = document.getElementById("learningObjectiveId");
+        const text_outPut_Standard =
+            outPut_Standard.options[outPut_Standard.selectedIndex].text;
+        const trainingTime = document.getElementById("trainingTime");
+        const deliveryType = document.getElementById("deliveryType");
+        const text_deliveryType =
+            deliveryType.options[deliveryType.selectedIndex].text;
+        const status = document.querySelector(
+            'input[name="status"]:checked'
+        ).value;
+        const trainingFormat = status === "Online" ? true : false;
+
+        const newContent = {
+            content: `${nameContent.value}`,
+            deliveryType: `${text_deliveryType}`,
+            duration: `${trainingTime.value}`,
+            trainingFormat: trainingFormat,
+            note: "no",
+            learningObjective: text_outPut_Standard,
+            unitName: inputValue.value,
+            day: `${dayInfunction}`,
+            unit: `Unit ${unitInfunction}`,
+        };
+        contents.push(newContent);
+        console.log("contents day", JSON.stringify(contents));
+
+        resetFormContent(form);
+        displayContentData(newContent, inputValue, dayInfunction);
+    }
+
+    function displayContentData(newContent, inputValue, dayInfunction) {
+        const unit = inputValue.closest(".unit"); // Lấy phần tử unit chứa inputValue
+        const dataContainer = document.createElement("div");
+        dataContainer.classList = "content-data-container";
+        const trainingFormatText = newContent.trainingFormat
+            ? "Online"
+            : "Offline";
+
+        // Hiển thị dữ liệu trong thẻ div
+        const htmlContent = `
+                <p class="nameContent">${newContent.content}</p>
+                <div class="learningObjective"><p>${newContent.learningObjective}</p></div>
+                <p>${newContent.duration}minutes</p>
+                <div class="status"><p>${trainingFormatText}</p></div>
+                <p>${newContent.deliveryType}</p>
+            `;
+
+        dataContainer.innerHTML = htmlContent;
+
+        const statusCss = dataContainer.querySelector(".status");
+        if (newContent.trainingFormat == true) {
+            statusCss.classList = "online";
+        } else {
+            statusCss.classList = "offline";
+        }
+
+        const plusContent = unit.querySelector(".plus-content-btn");
+        // Thêm thẻ div vào trước nút plusContent
+        unit.insertBefore(dataContainer, plusContent);
+    }
+
+    function changeUnit(event, inputValue) {
+        const unit = event.target.parentElement;
+
+        // Ẩn nút "Change" và hiển thị nút "Create"
+        const changeUnitBtn = unit.querySelector(".btn-change-unit");
+        changeUnitBtn.remove();
+
+        // Hiển thị nút "Create"
+        const createNameUnitBtn = unit.querySelector(".btn-create-unit");
+        createNameUnitBtn.style.display = "inline";
+
+        // Hiển thị ô input đã ẩn và ẩn thẻ <p> đang hiển thị
+        inputValue.style.display = "inline";
+
+        // Ẩn thẻ <p>
+        const paragraph = unit.querySelector(".unit-Name");
+        paragraph.remove();
+
+        // Hiển thị nút "plusContent"
+        const removePlusContent = unit.querySelector(".plus-content-btn");
+        removePlusContent.remove();
+    }
+
+    function resetFormContent(form) {
+        const input_NameContent = document.getElementById("contentName");
+        const select_outPut_Standard = document.getElementById(
+            "learningObjectiveId"
+        );
+        const input_TrainingTime = document.getElementById("trainingTime");
+        const select_deliveryType = document.getElementById("deliveryType");
+        const radio_status = document.querySelector(
+            "input[name='status'][value='Online']"
+        );
+
+        input_NameContent.value = "";
+        input_TrainingTime.value = "";
+        for (let i = 0; i < select_outPut_Standard.options.length; i++) {
+            // Nếu giá trị của option là "1", thiết lập thuộc tính selected
+            if (select_outPut_Standard.options[i].value === "1") {
+                select_outPut_Standard.options[i].selected = true;
+            } else {
+                // Nếu không phải giá trị "1", đảm bảo rằng không có option nào được chọn
+                select_outPut_Standard.options[i].selected = false;
+            }
+        }
+        for (let i = 0; i < select_deliveryType.options.length; i++) {
+            // Nếu giá trị của option là "1", thiết lập thuộc tính selected
+            if (select_deliveryType.options[i].value === "1") {
+                select_deliveryType.options[i].selected = true;
+            } else {
+                // Nếu không phải giá trị "1", đảm bảo rằng không có option nào được chọn
+                select_deliveryType.options[i].selected = false;
+            }
+        }
+        if (radio_status) {
+            radio_status.checked = true;
+        }
+    }
+</script>
+</body>
+</html>

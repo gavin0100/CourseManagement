@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>FrontEnd</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png"/>
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png"/>
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css"
+    />
+
+    <link th:href="@{/assets/Thang/css/cs-skin-elastic.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/ui_users.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/login/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Thang/css/syllabus/syllabus-update.css}" rel="stylesheet"/>
+    <!--    <link th:href="@{/assets/css/ui_users.css}" rel="stylesheet"/>-->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"
+            rel="stylesheet"
+    />
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff !important;
+        }
+
+        .traffic-chart {
+            min-height: 335px;
+        }
+
+        #flotPie1 {
+            height: 150px;
+        }
+
+        #flotPie1 td {
+            padding: 3px;
+        }
+
+        #flotPie1 table {
+            top: 20px !important;
+            right: -10px !important;
+        }
+
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #flotLine5 {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+
+        #cellPaiChart {
+            height: 160px;
+        }
+
+        .bars-icon {
+            position: absolute;
+            top: 18px;
+        }
+
+
+        #saveButton {
+            display: none; /* Ẩn liên kết mặc định */
+        }
+
+    </style>
+
+    <script
+            src="https://kit.fontawesome.com/8f73a47761.js"
+            crossorigin="anonymous"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <script src="/assets/js/syllabusCreate.js"></script>
+</head>
+<body>
+<!--Begin: SideBar-->
+<div th:replace="~{common/side_bar :: side_bar}"></div>
+<!--End: SideBar-->
+
+
+<div id="right-panel" class="right-panel">
+    <!--Begin: Header-->
+    <div th:replace="~{common/header :: header}"></div>
+    <!--End: Footer-->
+
+    <!--Begin: Content-->
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <h2>Edit Syllabus</h2>
+
+            <div id="container" class="container mt-5">
+                <div class="progress px-1" style="height: 3px; margin: 0 10px">
+                    <div
+                            class="progress-bar"
+                            role="progressbar"
+                            style="width: 0%"
+                            aria-valuenow="0"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                    ></div>
+                </div>
+                <div
+                        class="step-container d-flex justify-content-between"
+                        style="padding: 0 12px"
+                >
+                    <div class="step-circle" onclick="displayStep(1)">1</div>
+                    <div class="step-circle" onclick="displayStep(2)">2</div>
+                    <div class="step-circle" onclick="displayStep(3)">3</div>
+                </div>
+
+                <div class="step-container d-flex justify-content-between">
+                    <div class="step-custom">General</div>
+                    <div class="step-custom">Outline</div>
+                    <div class="step-custom">Others</div>
+                </div>
+                <form id="multi-step-form"
+                      th:object="${syllabus}"
+                      th:action="@{'/syllabus/update/' + ${syllabus.topicCode}}"
+                      method="post">
+                    <!--     nhớ thêm action và method ở đây           -->
+
+                    <div
+                            class="syllabus-property step-container d-flex justify-content-between"
+                            style="margin-top: 16px;"
+                    >
+                        <div class="syllabus-name">
+                            <label
+                                    for="syllabbus-name"
+                                    style="margin-right: 10px; font-weight: bold"
+                            >Syllabus name:
+                            </label>
+                            <input
+                                    id="syllabbus-name"
+                                    type="text"
+                                    name="name"
+                                    placeholder="syllabus name"
+                                    style="width: 250px; border-radius: 10px"
+                                    th:field="${syllabus.topicName}"
+                            />
+                        </div>
+                        <div class="syllabus-code">
+                            <label style="margin-right: 10px; font-weight: bold"
+                            >Code:
+                            </label>
+                            <span>any code</span>
+                        </div>
+                        <div class="syllabus-version">
+                            <label
+                                    for="syllabbus-version"
+                                    style="margin-right: 10px; font-weight: bold"
+                            >Version:
+                            </label>
+                            <input
+                                    id="syllabbus-version"
+                                    type="text"
+                                    name="version"
+                                    placeholder="1.0"
+                                    style="width: 40px; border-radius: 10px"
+                                    value="1.0"
+                                    th:field="${syllabus.version}"
+                            />
+                        </div>
+                    </div>
+                    <div class="step step-1">
+                        <!-- Step 1 form fields here -->
+                        <h3 class="title-custom">General</h3>
+                        <div class="mb-3 form-fields">
+                            <div class="d-flex mb-3">
+                                <label>Level: </label>
+                                <select style="width: 120px" name="level" id="syllabus-level" th:field="${syllabus.level}">
+                                    <option value="All level" selected="select">
+                                        All level
+                                    </option>
+                                    <option value="Expert">Expert</option>
+                                    <option value="Advanced">Advanced</option>
+                                    <option value="Advanced">Normal</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Easy">Easy</option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex mb-3">
+                                <label for="attendee-number" class="form-label"
+                                >Attendee number:
+                                </label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="attendee-number"
+                                        name="field1"
+                                        th:field="${syllabus.trainingAudience}"
+                                />
+                            </div>
+
+                            <div class="d-flex mb-3">
+                                <label for="technical-requirement" class="form-label"
+                                >Technical Requirement:
+                                </label>
+                                <textarea
+                                        style="height: 140px"
+                                        type="text"
+                                        class="form-control"
+                                        id="technical-requirement"
+                                        name="field1"
+                                        th:value="${syllabus.technicalGroup}"
+                                ></textarea>
+                            </div>
+
+                            <div class="d-flex mb-3">
+                                <label for="course-description" class="form-label"
+                                >Course Objectives</label
+                                >
+                                <textarea
+                                        style="height: 140px"
+                                        type="text"
+                                        class="form-control"
+                                        id="course-description"
+                                        name="field1"
+                                        th:value="${syllabus.courseObjective}"
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: right">
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #d45b13;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    type="button"
+                                    class="btn btn-primary next-step"
+                                    id="btn-next-general"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="step step-2">
+                        <!-- Step 2 form fields here -->
+                        <h3 class="title-custom">Outline</h3>
+                        <div id="days">
+                            <!-- Đây là nơi hiển thị danh sách các unit -->
+                            <ul th:each="day : ${days}" th:class="'day' + ${day} + ' day-custom'" style="padding-left: 0rem;">
+                                <div style="background-color: #2D3748; color: #fff; margin-top: 0; padding: 6px 10px 0px 4px;">
+                                    <h4 style="display: inline-block; margin-top: 0px; margin-bottom: 6px;" th:text="${'Day ' + day}"></h4>
+                                </div>
+                                <li th:each="unit : ${units}" class="unit" th:if="${unit.day == day}" style="list-style: none;">
+                                    <p class="syllabusTopicCode" th:text="${syllabus.topicCode}" style="display: none"></p>
+                                    <p class="unitCodeInUnit" th:text="${unit.unitCode}" style="display: none"></p>
+                                    <p class="unitDay" th:text="${day}" style="display: none"></p>
+                                    <span class="unitUnit" th:text="${unit.unit}"></span>
+                                    <p class="unit-Name" th:text="${unit.unitName}"></p>
+                                    <i class="fa-solid fa-pencil btn-change-unit changeNameUnit" style="cursor: pointer"></i>
+                                    <button class='btn btn-primary btn-create-unit' style="display: none">Update</button>
+                                    <div th:each="content : ${unit.trainingContents}" class="content-container" style="cursor: pointer; display: flex">
+                                        <div class="content-data-container" style="margin-left: 10px;width: 880px;justify-content: unset">
+                                            <p class="contentId" th:text="${content.id}" style="display: none"></p>
+                                            <div style="margin-right: 400px; width: 100px">
+                                                <p class="nameContent" th:text="${content.content}" ></p>
+                                            </div>
+                                            <div class="learningObjective" style="margin-right: 20px;width: 55px">
+                                                <p class="nameLearningObjective" th:text="${content.learningObjective.name}" ></p>
+                                            </div>
+                                            <div style="margin-right: 20px; width: 20px">
+                                                <p class="durationContent" th:text="${content.duration}" ></p>
+                                            </div>
+                                            <div th:class="${content.trainingFormat} ? 'online' : 'offline'" style="margin-right: 20px; width: 60px" >
+                                                <p class="statusContent" th:text="${content.trainingFormat} ? 'Online' : 'Offline'"></p>
+                                            </div>
+                                            <p class="deliveryTypeContent" th:text="${content.deliveryType}"></p>
+                                        </div>
+                                        <div class="content-material-container" style="width: fit-content;display: inline;margin-left: 3px;background-color: rgba(169, 169, 169, 0.7);border-radius: 30%;height: 48px;">
+                                            <input type="hidden" th:value="${content.getId()}">
+                                            <a class="contentMaterial" style="border-radius: 30%;border: none;padding: 8px 6px;color: rgb(50 42 42 / 70%);"><i class="fa-solid fa-file" style="font-size: 35px;margin-top: 6px;"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button id="add-day-button" class="btn btn-primary">
+                            <i class="fa-solid fa-circle-plus"></i> Add Day
+                        </button>
+
+                        <!-- Overlay -->
+                        <div class="overlay" id="formOverlay" style="display: none">
+                            <div class="container">
+                                <div
+                                        class="form"
+                                        id="formContent"
+                                        action="/syllabus/outline/contentInUnit"
+                                >
+                                    <table>
+                                        <tr style="display: none">
+                                            <td style="width: 110px">unitCode</td>
+                                            <td colspan="2">
+                                                <input
+                                                        style="width: 330px"
+                                                        type="text"
+                                                        name="unitCode"
+                                                        id="unitCode"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none">
+                                            <td style="width: 110px">id</td>
+                                            <td colspan="2">
+                                                <input
+                                                        style="width: 330px"
+                                                        type="text"
+                                                        name="contentId"
+                                                        id="contentId"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="background-color: #0f65c1" colspan="3">
+                                                New Content
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Name</td>
+                                            <td colspan="2">
+                                                <input
+                                                        style="width: 330px"
+                                                        type="text"
+                                                        name="contentName"
+                                                        id="contentName"
+                                                        placeholder="Name"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Output standard</td>
+                                            <td colspan="2">
+                                                <select
+                                                        name="learningObjectiveId"
+                                                        id="learningObjectiveId"
+                                                        style="width: 330px"
+                                                >
+                                                    <!-- <div th:each="response : ${trainingProgramResponses}">
+                                                                                <option th:value="${response.trainingProgramCode}" th:text="${response.trainingProgramCode + ' (' + response.name + ')'}"></option>
+                                                                            </div> -->
+                                                    <option value="1" selected="select">HS4O</option>
+                                                    <option value="2">SP3k</option>
+                                                    <option value="3">CS57</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Training time</td>
+                                            <td colspan="2">
+                                                <input
+                                                        style="width: 330px"
+                                                        type="text"
+                                                        id="trainingTime"
+                                                        name="trainingTime"
+                                                        placeholder="Training time"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 110px">Delivery type</td>
+                                            <td colspan="2">
+                                                <select
+                                                        name="deliveryType"
+                                                        id="deliveryType"
+                                                        style="width: 330px"
+                                                >
+                                                    <!-- <div th:each="response : ${trainingProgramResponses}">
+                                                                                <option th:value="${response.trainingProgramCode}" th:text="${response.trainingProgramCode + ' (' + response.name + ')'}"></option>
+                                                                            </div> -->
+                                                    <option value="1" selected="selected">
+                                                        Assignment/Lab
+                                                    </option>
+                                                    <option value="2">Concept/Lecture</option>
+                                                    <option value="3">Guide/Review</option>
+                                                    <option value="4">Test/Quiz</option>
+                                                    <option value="5">Exam</option>
+                                                    <option value="5">Seminar/Workshop</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="width: 110px">Status</td>
+                                            <td>
+                                                <input
+                                                        type="radio"
+                                                        name="status"
+                                                        value="Online"
+                                                        checked
+                                                />
+                                                Online
+                                                <input type="radio" name="status" value="Offline" />
+                                                Offline
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="bk_save_content" style="margin-bottom: 5px">
+                                        <button
+                                                type="submit"
+                                                class="button-save-content"
+                                                style="background-color: #0f65c1"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between">
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #2d3748;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    type="button"
+                                    class="btn btn-primary prev-step"
+                            >
+                                Previous
+                            </button>
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #d45b13;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    onmouseover="this.style.opacity='0.8';"
+                                    onmouseout="this.style.opacity='1';"
+                                    type="button"
+                                    class="btn btn-primary next-step"
+                                    id="btn-next-outline"
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="step step-3">
+                        <!-- Step 3 form fields here -->
+                        <h3 class="title-custom">Others</h3>
+                        <div class="mb-3" style="display: flex">
+                            <label
+                                    style="width: 180px; font-weight: bold"
+                                    class="form-label"
+                            >Training Principles:</label
+                            >
+                            <textarea
+                                    style="
+                    flex: 1;
+                    height: 140px;
+                    border: solid black 1px;
+                    resize: none;
+                    overflow-y: auto;
+                  "
+                                    type="text"
+                                    class="form-control"
+                                    id="training-Principles"
+                                    name="field1"
+                                    th:value="${syllabus.trainingPrinciples}"
+                            ></textarea>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between">
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #2d3748;
+                    font-weight: bold;
+                    border: none;
+                  "
+                                    type="button"
+                                    class="btn btn-primary prev-step"
+                            >
+                                Previous
+                            </button>
+                            <button
+                                    style="
+                    padding: 10px 28px;
+                    background-color: #d45b13;
+                    font-weight: bold;
+                  "
+                                    type="submit"
+                                    class="btn btn-success"
+                                    id="btn-submit-others"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--                        <form id="hidden-form" style="display: none;" action="/syllabus/create/outline" method="post">-->
+            <!--                            <input type="hidden" name="day" />-->
+            <!--                            <input type="hidden" name="unitName" />-->
+            <!--                            &lt;!&ndash; add other necessary fields &ndash;&gt;-->
+            <!--                        </form>-->
+        </div>
+        <!--        <div class="overlay" id="formEditMaterial">-->
+        <!--            <div class="container" style="width: 1350px;height: 400px;display: contents;">-->
+        <!--                <div class="form" style="width: 1350px;">-->
+        <!--                    <form style="margin-top: 25px;">-->
+        <!--                        <div class="search-box" style="height: 8px;">-->
+        <!--                            <div class="search">-->
+        <!--                                <div style="display: flex">-->
+        <!--                                    <p class="my-button" style="height: 88px;padding: 20px;font-size: 25px; color: #203b6c; background-color: white; margin-left: 565px; margin-right: 400px">Edit Material</p>-->
+        <!--                                    <button class="my-button showImportButton" id="showFormButton" style="height: fit-content; margin-top: 10px;"><i class="fas fa-plus add"></i>Add Material</button>-->
+        <!--                                </div>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <table  class="table table-striped" id="example2" style="width:100%; box-shadow: unset; margin-left: 10px;">-->
+        <!--                            <thead>-->
+        <!--                            <tr>-->
+        <!--                                <th class="custom-column" style="width: 250px">Name</th>-->
+        <!--                                <th class="custom-column" style="width: 130px">Created By</th>-->
+        <!--                                <th class="custom-column" style="width: 350px">Created Date</th>-->
+        <!--                                <th class="custom-column" style="border-right: none; width: 50px">Download</th>-->
+        <!--                                <th class="custom-column" style="min-width: 100px; max-width: 100px"></th>-->
+        <!--                            </tr>-->
+        <!--                            </thead>-->
+        <!--                            <tbody>-->
+        <!--                            <tr class="spandd">-->
+        <!--                                <td style="width: 250px">#</td>-->
+        <!--                                <td style="width: 150px">#</td>-->
+        <!--                                <td style="width: 350px">i1</td>-->
+        <!--                                <td style="width: 50px"><a href="#">Click here</a></td>-->
+        <!--                                <td style="text-align: right;">-->
+        <!--                                    <a class="my-button" href="#" style="background-color: red; margin-right: 2px"><i class="fa-solid fa-trash"></i> Remove</a>-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+
+
+        <!--                            </tbody>-->
+        <!--                        </table>-->
+        <!--                        <div class="bk_save_user" style="margin-bottom: 5px;">-->
+        <!--                            <button type="submit" class="button-save-user" style="background-color: #0f65c1">Exit</button>-->
+        <!--                        </div>-->
+        <!--                    </form>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <div class="overlay" >
+            <div class="container" style="width: 1350px;height: 400px;display: contents;">
+                <div class="form" style="width: 1350px;">
+                    <form method="post" action= "/syllabus/view_material_content" id="formEditMaterial" style="margin-top: 25px;" th:object="${MaterialTrainingContentRequestIUI}">
+                        <input name="contentId">
+                        <input name="contentName">
+                        <input name="contentLearningObjectiveName">
+                        <input name="contentDuration">
+                        <input name="contentStatus">
+                        <input name="contentDelivery">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--End: Content-->
+        <div class="clearfix"></div>
+    </div>
+
+    <!--Begin: Footer-->
+    <div th:replace="~{common/footer :: footer}"></div>
+    <!--End: Footer-->
+</div>
+
+<!-- Scripts Step -->
+<script>
+    new DataTable('#example2');
+    var currentStep = 1;
+    var updateProgressBar;
+
+    function displayStep(stepNumber) {
+        if (stepNumber >= 1 && stepNumber <= 3) {
+            $(".step-" + currentStep).hide();
+            $(".step-" + stepNumber).show();
+            currentStep = stepNumber;
+            updateProgressBar();
+        }
+    }
+
+    $(document).ready(function () {
+        $('#multi-step-form').find('.step').slice(1).hide();
+
+        $(".next-step").click(function () {
+            if (currentStep < 3) {
+                $(".step-" + currentStep).addClass("animate__animated animate__fadeOutLeft");
+                currentStep++;
+                setTimeout(function () {
+                    $(".step").removeClass("animate__animated animate__fadeOutLeft").hide();
+                    $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInRight");
+                    updateProgressBar();
+                }, 500);
+            }
+        });
+
+        $(".prev-step").click(function () {
+            if (currentStep > 1) {
+                $(".step-" + currentStep).addClass("animate__animated animate__fadeOutRight");
+                currentStep--;
+                setTimeout(function () {
+                    $(".step").removeClass("animate__animated animate__fadeOutRight").hide();
+                    $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInLeft");
+                    updateProgressBar();
+                }, 500);
+            }
+        });
+
+        updateProgressBar = function () {
+            var progressPercentage = ((currentStep - 1) / 2) * 100;
+            $(".progress-bar").css("width", progressPercentage + "%");
+        }
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.changeNameUnit', function (event) {
+            // Prevent the default behavior of the button (form submission)
+            event.preventDefault();
+
+            // Get the current text content of the adjacent p tag
+            var currentText = $(this).prev('.unit-Name').text().trim();
+
+            // Create an input element
+            var inputElement = $('<input>').attr('type', 'text').val(currentText);
+
+            // Replace the p tag with the input element
+            var originalElement = $(this);
+            originalElement.prev('.unit-Name').replaceWith(inputElement);
+
+            // Hide the <i> tag
+            originalElement.hide();
+
+            // Show the button
+            originalElement.next('.btn-create-unit').show();
+            originalElement.closest('li').find('.fa-circle-plus').css('display', 'none');
+
+            // Focus on the input element
+            inputElement.focus();
+
+            // Add a blur event to handle when the user clicks outside the input
+            inputElement.blur(function () {
+                // Get the new value entered by the user
+                var newValue = inputElement.val().trim();
+
+                // Create a new p tag with the updated text
+                var newParagraph = $('<p>').addClass('unit-Name').text(newValue);
+
+                // Replace the input with the new p tag
+                inputElement.replaceWith(newParagraph);
+
+                // Show the <i> tag again
+                originalElement.show();
+
+                // Hide the corresponding button
+                originalElement.next('.btn-create-unit').hide();
+
+                // Show the fa-circle-plus icon
+                originalElement.closest('li').find('.fa-circle-plus').css('display', 'inline-block');
+
+                var syllabusId = originalElement.siblings('.syllabusTopicCode').text().trim();
+
+                var unit = {
+                    unitCode: originalElement.siblings('.unitCodeInUnit').text().trim(),
+                    unit: originalElement.siblings('.unitUnit').text().trim(),
+                    unitName: originalElement.siblings('.unit-Name').text().trim(),
+                    day: originalElement.siblings('.unitDay').text().trim()
+                };
+
+
+                console.log("unit: ", unit)
+                console.log("syllabusId: ", syllabusId)
+                SendRequestEdit(unit, syllabusId);
+            });
+        });
+
+        function SendRequestEdit(unit, syllabusId) {
+            // Lấy dữ liệu từ unit có unitCode tương ứng
+
+            // Thực hiện fetch request
+            fetch('/syllabus/update/unit/' + syllabusId, {
+                method: 'POST', // hoặc 'PUT' tùy thuộc vào yêu cầu của bạn
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(unit),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Xử lý phản hồi từ server nếu cần
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi nếu cần
+                });
+        }
+
+        var unitCodeGlobal;
+        $(document).on('click', '.fa-circle-plus', function (event) {
+            event.preventDefault();
+
+            // Lấy ra unitCode từ thuộc tính dữ liệu
+            unitCode = $(this).siblings('.unitCodeInUnit').text().trim();
+            console.log("UnitCode from plus button: ", unitCode);
+            unitCodeGlobal = unitCode;
+
+            // Lấy ra form và các trường input của form
+            const formContent = document.getElementById('formOverlay');
+            const formInputs = formContent.querySelectorAll('input, select');
+
+            // Đặt lại giá trị của mỗi trường input về giá trị mặc định
+            formInputs.forEach(input => {
+                if (input.type === 'text') {
+                    input.value = ''; // Đặt lại giá trị cho input text
+                } else if (input.type === 'radio') {
+                    // Đặt lại giá trị cho radio button, giả sử giá trị mặc định là 'Online'
+                    input.checked = input.value === 'Online';
+                } else if (input.tagName === 'SELECT') {
+                    // Đặt lại giá trị cho các select box, giả sử giá trị mặc định là lựa chọn đầu tiên
+                    input.selectedIndex = 0;
+                }
+            });
+
+            // Hiển thị form
+            formContent.style.display = 'flex';
+        });
+
+        $(document).on('click', function (e) {
+            const formOverlay = document.getElementById('formOverlay');
+            formOverlay.addEventListener('click', function (e) {
+                if (e.target === formOverlay) {
+                    formOverlay.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+
+        });
+
+
+        function showForm(content) {
+            // Set the form values based on the content data
+            $('#contentName').val(content.content);
+
+            // Assuming content.learningObjective.name corresponds to the option values
+            // $('#learningObjectiveId').val(content.learningObjective.name);
+            $('#learningObjectiveId option').filter(function () {
+                return $(this).text() === content.learningObjective.name;
+            }).prop('selected', true);
+
+            $('#trainingTime').val(content.duration);
+
+            // Convert the deliveryType to match the format in the options
+            const formattedDeliveryType = content.deliveryType.replace('_', '/');
+            console.log("content delivery: ", content.deliveryType);
+            console.log("formattedDeliveryType: ", formattedDeliveryType);
+            $('#deliveryType option').filter(function () {
+                return $(this).text() === formattedDeliveryType;
+            }).prop('selected', true);
+
+            // Set the correct radio button for the Status field
+            $('input[name="status"][value="Online"]').prop('checked', content.trainingFormat === 'Online');
+            $('input[name="status"][value="Offline"]').prop('checked', content.trainingFormat !== 'Online');
+
+            $('#contentId').val(content.contentId);
+
+            // Log the value of contentId
+            console.log('Content ID:', $('#contentId').val());
+
+            var unitCode = $(this).siblings('.unitCodeInUnit').text().trim();
+            $('#unitCode').val(unitCode);
+
+            console.log('Unit Code:', unitCodeGlobal);
+
+            // Show the form overlay
+            $('#formOverlay').css('display', 'flex');
+        }
+
+        $(document).on('click', '.content-data-container', function () {
+            // unitCode = $(this).siblings('.unitCodeInUnit').text().trim();
+            var unitCode = $(this).closest('.content-container').siblings('.unitCodeInUnit').text().trim();
+            console.log("hihi unitCode: ", unitCode);
+            unitCodeGlobal = unitCode;
+            // Get the content data associated with this container
+            var content = {
+                contentId: $(this).find('.contentId').text().trim(),
+                content: $(this).find('.nameContent').text().trim(),
+                learningObjective: {
+                    name: $(this).find('.nameLearningObjective').text().trim()
+                },
+                duration: $(this).find('.durationContent').text().trim(),
+                deliveryType: $(this).find('.deliveryTypeContent').text().trim(),
+                trainingFormat: $(this).find('.statusContent').text().trim()
+            };
+
+            $('#contentId').val(content.contentId);
+
+            // Show the form with corresponding values
+            showForm(content);
+        });
+
+        function SendRequestUpdateContent(unitCode, content) {
+
+            // Thực hiện fetch request
+            fetch('/syllabus/update/content/' + unitCode, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(content),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response:', data);
+
+                    // Xử lý dữ liệu trên trang web
+                    if (data.success) {
+                        // Cập nhật trang web với thông điệp thành công
+                        console.log('Success:', data.success);
+
+                        // Ẩn form overlay sau khi đã cập nhật thành công
+                        $('#formOverlay').css('display', 'none');
+
+                        // Tìm và cập nhật nội dung trong DOM
+                        var contentId = $('#contentId').val().trim();
+                        var updatedContent = {
+                            id: contentId,
+                            content: $('#contentName').val().trim(),
+                            learningObjective: {
+                                name: $('#learningObjectiveId option:selected').text().trim()
+                            },
+                            duration: $('#trainingTime').val().trim(),
+                            deliveryType: $('#deliveryType option:selected').text().trim(),
+                            trainingFormat: $('input[name="status"]:checked').val() === 'Online' ? true : false
+                        };
+
+                        // Tìm thẻ div chứa nội dung cần cập nhật
+                        var $contentContainer = $('.content-data-container').find('.contentId:contains(' + contentId + ')').closest('.content-data-container');
+
+                        // Cập nhật nội dung trong DOM
+                        $contentContainer.find('.nameContent').text(updatedContent.content);
+                        $contentContainer.find('.nameLearningObjective').text(updatedContent.learningObjective.name);
+                        $contentContainer.find('.durationContent').text(updatedContent.duration);
+                        $contentContainer.find('.statusContent').text(updatedContent.trainingFormat ? 'Online' : 'Offline');
+                        $contentContainer.find('.deliveryTypeContent').text(updatedContent.deliveryType);
+                    } else if (data.error) {
+                        $('#formOverlay').css('display', 'none')
+
+                        // Xử lý lỗi nếu có
+                        console.error('Error:', data.error);
+
+                        console.log("vao error")
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi nếu cần
+                });
+        }
+
+        function SendRequestCreateContent(unitCode, newContent) {
+            console.log("Đây là unitCode khi vào trong func: ",unitCode)
+
+            // Thực hiện fetch request
+            fetch('/syllabus/update/content/' + unitCode, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newContent),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response:', data);
+
+                    // Xử lý dữ liệu trên trang web
+                    if (data.success) {
+                        // Cập nhật trang web với thông điệp thành công
+                        console.log('Success:', data.success);
+
+                        handleResponse(data);
+
+                        // Ẩn form overlay sau khi đã cập nhật thành công
+                        $('#formOverlay').css('display', 'none');
+
+
+                    } else if (data.error) {
+                        $('#formOverlay').css('display', 'none')
+
+                        // Xử lý lỗi nếu có
+                        console.error('Error:', data.error);
+
+                        console.log("vao error")
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi nếu cần
+                });
+        }
+
+        function handleResponse(data) {
+            // Kiểm tra xem response có chứa dữ liệu hợp lệ không
+            if (data && data.trainingUnit && data.trainingUnit.id) {
+                // Tìm thẻ li có unit tương ứng với trainingUnit.id trong response
+                var $unitLi = $('.unit[data-unit-id="' + data.trainingUnit.id + '"]');
+
+                // Tạo một div mới với các thông tin từ response
+                var newContentContainer = $('<div class="content-data-container"></div>');
+                newContentContainer.append('<p class="contentId" style="display: none">' + data.id + '</p>');
+                newContentContainer.append('<p class="nameContent">' + data.content + '</p>');
+
+                // Thêm các thông tin khác tùy thuộc vào dữ liệu response
+                // ...
+
+                // Thêm div mới vào trước nút plus (thẻ i plus)
+                $unitLi.find('.fa-circle-plus').before(newContentContainer);
+            }
+        }
+
+
+
+
+        $(document).on('click', '.button-save-content', function (event) {
+            event.preventDefault();
+
+            // Lấy unitCode từ input trong form
+            var unitCode = unitCodeGlobal;
+            console.log("Đây là unitCode tìm được: ",unitCode)
+
+            console.log($('#contentId').val().trim())
+
+            var contentId = $('#contentId').val().trim();
+            var contentName = $('#contentName').val().trim();
+            var learningObjectiveName = $('#learningObjectiveId option:selected').text().trim();
+            var duration = $('#trainingTime').val().trim();
+            var deliveryType = $('#deliveryType option:selected').text().trim();
+            var trainingFormat = $('input[name="status"]:checked').val() === 'Online' ? true : false;
+
+            if (contentId) {
+                // Cập nhật nếu có id
+                var content = {
+                    id: contentId,
+                    content: contentName,
+                    learningObjective: {
+                        name: learningObjectiveName
+                    },
+                    duration: duration,
+                    deliveryType: deliveryType,
+                    trainingFormat: trainingFormat
+                };
+
+                console.log('Updating existing content:');
+                console.log(content);
+
+                // Gọi hàm để gửi request cập nhật
+                SendRequestUpdateContent(unitCode, content);
+            } else {
+                console.log("Đây là unitCode khi ta createContet: ",unitCode)
+                // Tạo mới nếu không có id
+                var newContent = {
+                    id: '0',
+                    content: contentName,
+                    learningObjective: {
+                        name: learningObjectiveName
+                    },
+                    duration: duration,
+                    deliveryType: deliveryType,
+                    trainingFormat: trainingFormat
+                };
+
+                console.log('Creating new content:');
+                console.log(newContent);
+
+                // Gọi hàm để gửi request tạo mới
+                SendRequestCreateContent(unitCode, newContent);
+
+            }
+            $('#formOverlay').css('display', 'none');
+        });
+
+
+        $(document).on('click', '.content-material-container', function (event) {
+            var contentIdValue = $(this).siblings('.content-data-container').find('.contentId').text().trim();
+            var contentNameValue = $(this).siblings('.content-data-container').find('.nameContent').text().trim();
+            var contentLeaningObjectiveNameValue = $(this).siblings('.content-data-container').find('.nameLearningObjective').text().trim();
+            var contentDurationValue = $(this).siblings('.content-data-container').find('.durationContent').text().trim();
+            var contentStatusValue = $(this).siblings('.content-data-container').find('.statusContent').text().trim();
+            var contentDeliveryTypeValue = $(this).siblings('.content-data-container').find('.deliveryTypeContent').text().trim();
+            console.log(contentIdValue, " ", contentNameValue, " ", contentLeaningObjectiveNameValue, " ",
+                contentDurationValue, " ", contentStatusValue, " ", contentDeliveryTypeValue);
+            const formEditMaterial = document.getElementById('formEditMaterial');
+            // Set values to the form inputs
+            $('#formEditMaterial [name="contentId"]').val(contentIdValue);
+            $('#formEditMaterial [name="contentName"]').val(contentNameValue);
+            $('#formEditMaterial [name="contentLearningObjectiveName"]').val(contentLeaningObjectiveNameValue);
+            $('#formEditMaterial [name="contentDuration"]').val(contentDurationValue);
+            $('#formEditMaterial [name="contentStatus"]').val(contentStatusValue);
+            $('#formEditMaterial [name="contentDelivery"]').val(contentDeliveryTypeValue);
+            formEditMaterial.submit();
+        });
+    });
+
+</script>
+
+</body>
+</html>

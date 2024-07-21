@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FrontEnd</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png" />
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png" />
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css"
+    />
+
+
+    <link th:href="@{/assets/Duc/cs-skin-elastic.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Duc/style.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Duc/ui_users.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/Duc/login/bootstrap.css}" rel="stylesheet"/>
+    <!--    <link th:href="@{/assets/css/ui_users.css}" rel="stylesheet"/>-->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"
+            rel="stylesheet"
+    />
+    <style>
+        #weatherWidget .currentDesc {
+            color: #ffffff !important;
+        }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1 {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding: 3px;
+        }
+        #flotPie1 table {
+            top: 20px !important;
+            right: -10px !important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5 {
+            height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart {
+            height: 160px;
+        }
+
+        .bars-icon {
+            position: absolute;
+            top: 18px;
+        }
+
+
+        #saveButton {
+            display: none; /* Ẩn liên kết mặc định */
+        }
+
+    </style>
+
+    <script
+            src="https://kit.fontawesome.com/8f73a47761.js"
+            crossorigin="anonymous"
+    ></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+</head>
+<body>
+<!--Begin: SideBar-->
+<div th:replace="~{common/side_bar :: side_bar}"></div>
+<!--End: SideBar-->
+
+
+<div id="right-panel" class="right-panel">
+    <!--Begin: Header-->
+    <div th:replace="~{common/header :: header}"></div>
+    <!--End: Footer-->
+
+    <!--Begin: Content-->
+    <div class="content">
+        <!-- Animated -->
+        <div class="animated fadeIn">
+            <h2>View Training Program</h2>
+            <div class="col-md-12 form-group">
+                <div id="errorMessage" th:if="${message}" class="alert alert-success" role="alert"
+                     th:text="${message}">
+                </div>
+                <div id="errorMessage1" th:if="${errorMessage}" class="alert alert-danger" role="alert"
+                     th:text="${errorMessage}">
+                </div>
+            </div>
+            <div class="search-box">
+                <div class="search">
+                    <button class="my-button" id="showFormButton"><i class="fas fa-plus add"></i>Add Training Program</button>
+                    <button class="my-button showImportButton" id="showImportButton" style="background-color: #ed5c11;"><i class="fa-solid fa-file-import add"></i>Import</button>
+                </div>
+            </div>
+
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th class="custom-column">ID</th>
+                    <th class="custom-column">Program name</th>
+                    <th class="custom-column">Modified date</th>
+                    <th class="custom-column">Created by</th>
+                    <th class="custom-column">Duration</th>
+                    <th class="custom-column">Status</th>
+<!--                    <th class="custom-column">Syllabus</th>-->
+                    <th class="custom-column"></th>
+                    <th style="display: none;"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="spandd" th:each="trainingProgram : ${trainingPrograms}">
+                    <td th:text="${trainingProgram.trainingProgramCode}">1</td>
+                    <td th:text="${trainingProgram.name}">.Net web fullstack</td>
+                    <td th:text="${trainingProgram.modifiedDate}">02/11/2023</td>
+                    <td th:text="${trainingProgram.createdBy}">Vo Van Duc</td>
+                    <td th:text="${trainingProgram.duration}">15</td>
+                    <td>
+                                    <span th:text="${trainingProgram.status}"
+                                          th:classappend="${trainingProgram.status == 'Drafting' ? 'training-program-drafting' :
+                                                            (trainingProgram.status == 'Active' ? 'training-program-active' :
+                                                            (trainingProgram.status  == 'Inactive' ? 'training-program-inactive' : ''))}"
+                                          style="display: inline-block; width: 80px; line-height: 1.2em; vertical-align: middle; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;text-align: center">
+                                    </span>
+                    </td>
+                    <td class="showFormActions pointer">
+                        <span class="open-form" style="background:none; color: black">...</span>
+                    </td>
+                    <td style="display: none;" th:text="${trainingProgram.generalInformation}"></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+            <div class="overlay" id="formOverlay">
+                <div class="container">
+                    <div class="form">
+                        <form action="/training_program/create" method="post">
+                            <table>
+                                <tr>
+                                    <th style="background-color: #0f65c1;" colspan="3">Add a new training program</th>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td><input type="text" name="name" placeholder="name"></td>
+                                </tr>
+                                <tr>
+                                    <td>Duration</td>
+                                    <td><input type="text" name="estimatedDuration" placeholder="duration"></td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>
+                                        <label>
+                                            <input type="radio" name="status" value="Active"> Active
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="status" value="Inactive"> Inactive
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="status" value="Drafting"> Drafting
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>General Information</td>
+                                    <td><input type="text" name="generalInformation" placeholder="General Information"></td>
+                                </tr>
+                            </table>
+                            <div class="bk_save_user" style="margin-bottom: 5px;">
+                                <button type="submit" class="button-save-user" style="background-color: #0f65c1">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" id="formActions" style="background: none">
+                <div class="container" style="margin-right: inherit; max-width: 180px;min-width: 180px;">
+                    <div class="form" style="border-radius: 10px;">
+                        <table>
+                            <tr>
+                                <td style="padding-top: 0px;padding-bottom: 5px;">
+                                    <p style="padding: 3px;background-color: white;color: #2A4365;text-align: left;padding-left: 0px; display: inline; font-weight: 700;">Manage</p>
+                                    <i class="fa-solid fa-rectangle-xmark close-form-action" style="color: red; display: inline; margin-left: 65px; cursor: pointer"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0px 10px;"><hr style="margin: 0rem 0;"></td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+<!--                                    th:href="@{/training_program/add_syllabus/{id}(id =${1})}"-->
+                                    <a  id="firstLink" style="color: #17b5ec;" class="addSyllabusTrainingProgramAction">
+                                        <i class="fa-sharp fa-solid fa-circle-plus" style="width: 15px;height: 15px;padding-right: 20px;"></i>Add syllabus
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+                                    <a  id="readDetailLink" style="color: #17b5ec;" class="readDetailTrainingProgramAction">
+                                        <i class="fa-solid fa-book-open-reader" aria-hidden="true" style="width: 15px;height: 15px;padding-right: 20px;"></i>Read Detail
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="pointer">
+                                <td class="open-add-material" style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;"><i class="fa fa-folder-open-o" aria-hidden="true" style="width: 15px;height: 15px;padding-right: 20px;"></i>Training material</td>
+                            </tr>
+                            <tr class="pointer">
+                                <td class="open-edit-form" style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;"><i class="fa-solid fa-pencil" style="width: 15px;height: 15px;padding-right: 20px;"></i>Edit program</td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+                                    <a id="secondLink" style="color: #17b5ec;">
+                                        <i class="fa-sharp fa-regular fa-copy" style="width: 15px;height: 15px;padding-right: 20px;"></i>Duplicate program
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+                                    <a id="thirdLink" style="color: #17b5ec;">
+                                        <i id="statusIcon" class="fa-regular fa-eye-slash" style="width: 15px;height: 15px;padding-right: 20px;"></i><span id="statusText" style="color: #17B5EC;padding: unset; background: none;">De-active program</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="pointer">
+                                <td style="color: #17b5ec;font-weight: normal;padding: 5px;padding-left: 10px;">
+                                    <a id="fourthLink" style="color: #17b5ec;">
+                                        <i class="fa-solid fa-trash" style="width: 15px;height: 15px;padding-right: 20px;"></i>Delete program
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" id="formEdit">
+                <div class="container">
+                    <div class="form">
+                        <form action="/training_program/edit" method="post" >
+                            <table>
+                                <tr>
+                                    <th style="background-color: #0f65c1;" colspan="3">Edit training program</th>
+                                </tr>
+                                <tr style="display: none">
+                                    <td>Name</td>
+                                    <td><input type="text" name="trainingProgramId" placeholder="id"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td><input type="text" name="name" placeholder="name"></td>
+                                </tr>
+                                <tr>
+                                    <td>Duration</td>
+                                    <td><input type="text" name="duration" placeholder="duration"></td>
+                                </tr>
+                                <tr>
+                                    <td>General Information</td>
+                                    <td><input type="text" name="generalInformation" placeholder="General Information"></td>
+                                </tr>
+                            </table>
+                            <div class="bk_save_user" style="margin-bottom: 5px;">
+                                <button type="submit" class="button-save-user" style="background-color: #0f65c1">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" id="formAddMaterial">
+                <div class="container">
+                    <div class="form">
+                        <form action="/training_program/add_material" method="post" enctype="multipart/form-data">
+                            <table>
+                                <tr>
+                                    <th style="background-color: #0f65c1;" colspan="3">Add Training Material</th>
+                                </tr>
+                                <tr style="display: none">
+                                    <td>Name</td>
+                                    <td><input type="text" name="trainingProgramId" placeholder="id"></td>
+                                </tr>
+                                <tr>
+                                    <td>File</td>
+                                    <td><input type="file" name="file" placeholder="file" multiple></td>
+                                </tr>
+                            </table>
+                            <div class="bk_save_user" style="margin-bottom: 5px;">
+                                <button type="submit" class="button-save-user" style="background-color: #0f65c1">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" id="formImport">
+                <div class="container">
+                    <div class="form">
+                        <form action="/training_program/import" method="post" enctype="multipart/form-data">
+                            <table>
+                                <tr>
+                                    <th style="background-color: #0f65c1;" colspan="3">Import Training Program</th>
+                                </tr>
+                                <tr>
+                                    <td>Import setting</td>
+                                    <td><input type="file" name="file" placeholder="file" multiple></td>
+                                </tr>
+                            </table>
+                            <div class="bk_save_user" style="margin-bottom: 5px;">
+                                <button type="submit" class="button-save-user" style="background-color: #0f65c1">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End: Content-->
+        <div class="clearfix"></div>
+
+        <form type="hidden" style="visibility: hidden" method="post" id="formRequestTrainingProgramAddSyllabus" action="/training_program/add_syllabus_page" th:object="${TrainingProgramRequestUI}">
+            <input name="trainingProgramId">
+        </form>
+        <form type="hidden" style="visibility: hidden" method="post" id="formRequestTrainingProgramReadDetail" action="/training_program/detail" th:object="${TrainingProgramRequestUI}">
+            <input name="trainingProgramId">
+        </form>
+    <br>
+        <br>
+        <br>
+    </div>
+    <!--Begin: Footer-->
+    <div th:replace="~{common/footer :: footer}"></div>
+    <!--End: Footer-->
+
+</div>
+
+<!-- Scripts -->
+<script>
+    $(document).ready(function () {
+        // Add User
+        const showFormButton = document.getElementById('showFormButton');
+        const formOverlay = document.getElementById('formOverlay');
+        const showFormActions = document.getElementById('showFormActions');
+        const formActions = document.getElementById('formActions');
+        const formEdit = document.getElementById('formEdit');
+        const showEditForm = document.getElementById('open-edit-form');
+
+        showFormButton.addEventListener('click', function () {
+            formOverlay.style.display = 'flex'; // Hiển thị overlay
+        });
+
+
+        showEditForm.addEventListener('click', function () {
+            formEdit.style.display= 'flex';
+        });
+
+
+        formOverlay.querySelector('.container').addEventListener('click', function (e) {
+            e.stopPropagation(); // Ngăn không đóng overlay khi bấm vào form
+        });
+
+        formEdit.querySelector('.container').addEventListener('click', function (e) {
+            e.stopPropagation(); // Ngăn không đóng form edit khi bấm vào form
+        });
+
+        formActions.querySelector('.container').addEventListener('click', function (e) {
+            e.stopPropagation(); // Ngăn không đóng form action khi bấm vào form
+        });
+
+        formImport.querySelector('.container').addEventListener('click', function (e) {
+            e.stopPropagation(); // Ngăn không đóng form action khi bấm vào form
+        });
+    });
+
+</script>
+<script>
+    new DataTable('#example', {
+        "order": []
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var name = "";
+        var duration = "";
+        var status = "";
+        var generalInformation = "";
+        var trainingProgramId = "";
+        $(document).on('click', '.showImportButton', function () {
+            const formImport = document.getElementById('formImport');
+            formImport.style.display= 'flex';
+        });
+        $(document).on('mouseenter', '.open-form', function () {
+            var row = $(this).closest('tr');
+            var rowOffset = row.offset();
+            var form = $('#formActions');
+            var formTop = rowOffset.top + row.height();
+            if ($(window).scrollTop() > 0) {
+                formTop = rowOffset.top + row.height() - $(window).scrollTop();
+            }
+            form.css({
+                top: formTop + 'px',
+                left:'0px'
+            });
+
+
+            // Extract data from the row
+            var trainingProgramCode = row.find('td:eq(0)').text();
+            // var firstLinkElement = form.find('#firstLink'); // Select by ID
+            // var linkForFirstA = '/training_program/add_syllabus/' + trainingProgramCode;
+            // firstLinkElement.attr('href', linkForFirstA);
+            const formRequestTrainingProgramAddSyllabus = document.getElementById('formRequestTrainingProgramAddSyllabus');
+            const classIdInput1 = formRequestTrainingProgramAddSyllabus.querySelector('[name="trainingProgramId"]');
+            classIdInput1.value = trainingProgramCode;
+
+            // Set the href attribute for the second <a> tag
+            var secondLinkElement = form.find('#secondLink'); // Select by ID
+            var linkForSecondB = '/training_program/duplicate/' + trainingProgramCode;
+            secondLinkElement.attr('href', linkForSecondB);
+
+            // Set the href attribute for the second <a> tag
+            var thirdLinkElement = form.find('#thirdLink'); // Select by ID
+            var linkForSecondC = '/training_program/active/' + trainingProgramCode;
+            thirdLinkElement.attr('href', linkForSecondC);
+
+            // Set the href attribute for the second <a> tag
+            var fourthLinkElement = form.find('#fourthLink'); // Select by ID
+            var linkForSecondD = '/training_program/delete/' + trainingProgramCode;
+            fourthLinkElement.attr('href', linkForSecondD);
+
+            // var readDetailLinkElement = form.find('#readDetailLink'); // Select by ID
+            // var readDetailLink = '/training_program/detail/' + trainingProgramCode;
+            // readDetailLinkElement.attr('href', readDetailLink);
+            const formRequestTrainingProgramReadDetail = document.getElementById('formRequestTrainingProgramReadDetail');
+            const classIdInput2 = formRequestTrainingProgramReadDetail.querySelector('[name="trainingProgramId"]');
+            classIdInput2.value = trainingProgramCode;
+
+
+            name = row.find('td:eq(1)').text();
+            duration = row.find('td:eq(4)').text();
+            status = row.find('td:eq(5) span').text();
+            generalInformation = row.find('td:eq(7)').text();
+            trainingProgramId = row.find('td:eq(0)').text();
+            // You can now use these variables to populate your form or take any other actions
+            // console.log('Clicked on row with data:');
+            // console.log('Training Program Code: ' + trainingProgramCode);
+            // console.log('Name: ' + name);
+            // console.log('Created Date: ' + createdDate);
+            // console.log('Created By: ' + createdBy);
+            // console.log('Duration: ' + duration);
+            // console.log('Status: ' + status);
+
+            if (status === "Active") {
+                $('#statusText').text("De-Active program");
+                $('#statusIcon').attr('class', 'fa-regular fa-eye-slash');
+            } else if (status === "Inactive") {
+                $('#statusText').text("Active program");
+                $('#statusIcon').attr('class', 'fa-sharp fa-solid fa-eye');
+            }
+            else if (status === "Drafting"){
+                $('#statusText').text("Active program");
+                $('#statusIcon').attr('class', 'fa-sharp fa-solid fa-eye');
+            }
+
+            // Show or hide the formActions div
+            // $('#formActions').show();
+            form.show();
+        });
+        $(document).on('click', '.addSyllabusTrainingProgramAction', function () {
+            const formRequestTrainingProgramAddSyllabus = document.getElementById('formRequestTrainingProgramAddSyllabus');
+            formRequestTrainingProgramAddSyllabus.submit();
+        });
+        $(document).on('click', '.readDetailTrainingProgramAction', function () {
+            const formRequestTrainingProgramReadDetail = document.getElementById('formRequestTrainingProgramReadDetail');
+            formRequestTrainingProgramReadDetail.submit();
+        });
+        $(document).on('click', '.open-edit-form', function () {
+            // Find the closest row to the clicked "..." part
+            // var form = $('#formEdit');
+            // form.show();
+
+            const formEdit = document.getElementById('formEdit');
+            const nameInput = formEdit.querySelector('[name="name"]');
+            nameInput.value = name;
+            const durationInput = formEdit.querySelector('[name="duration"]');
+            durationInput.value = duration;
+            const generalInformationInput = formEdit.querySelector('[name="generalInformation"]');
+            generalInformationInput.value = generalInformation;
+            const idInput = formEdit.querySelector('[name="trainingProgramId"]');
+            idInput.value = trainingProgramId;
+            // const activeCheckbox = formEdit.querySelector('input[value="active"]');
+            // const inactiveCheckbox = formEdit.querySelector('input[value="inactive"]');
+            // const draftingCheckbox = formEdit.querySelector('input[value="drafting"]');
+            // if (status === 'Active') {
+            //     console.log("active");
+            //     activeCheckbox.checked = true;
+            //     inactiveCheckbox.checked = false;
+            //     draftingCheckbox.checked = false;
+            // } else if (status === 'Inactive') {
+            //     activeCheckbox.checked = false;
+            //     inactiveCheckbox.checked = true;
+            //     draftingCheckbox.checked = false;
+            // } else {
+            //     draftingCheckbox.checked = true;
+            //     activeCheckbox.checked = false;
+            //     inactiveCheckbox.checked = false;
+            // }
+            formEdit.style.display = 'flex'; // Ẩn overlay nếu bấm ra ngoài
+        });
+        $(document).on('click', '.open-add-material', function () {
+            const formAddMaterial = document.getElementById('formAddMaterial');
+            const idInput = formAddMaterial.querySelector('[name="trainingProgramId"]');
+            idInput.value = trainingProgramId;
+            formAddMaterial.style.display = 'flex'; // Ẩn overlay nếu bấm ra ngoài
+        });
+        $(document).on('click', '.close-form-action', function () {
+            const formActions = document.getElementById('formActions');
+            formActions.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+        });
+
+
+        // Handle clicks anywhere outside the form to close it
+        $(document).on('click', function (e) {
+            // const formActions = document.getElementById('formActions');
+            // formActions.addEventListener('click', function (e) {
+            //     if (e.target === formActions) {
+            //         formActions.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+            //     }
+            // });
+            const formOverlay = document.getElementById('formOverlay');
+            formOverlay.addEventListener('click', function (e) {
+                if (e.target === formOverlay) {
+                    formOverlay.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+            const formEdit = document.getElementById('formEdit');
+            formEdit.addEventListener('click', function (e) {
+                if (e.target === formEdit) {
+                    formEdit.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+            const formAddMaterial = document.getElementById('formAddMaterial');
+            formAddMaterial.addEventListener('click', function (e) {
+                if (e.target === formAddMaterial) {
+                    formAddMaterial.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+            const formImport = document.getElementById('formImport');
+            formImport.addEventListener('click', function (e) {
+                if (e.target === formImport) {
+                    formImport.style.display = 'none'; // Ẩn overlay nếu bấm ra ngoài
+                }
+            });
+        });
+
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<header id="header" class="header" th:fragment="header">
+    <div class="top-left">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="./"
+            ><img src="/images/fpt.png" alt="Logo" /></a
+            >
+            <a class="navbar-brand hidden" href="./"
+            ><img src="/images/fpt.png" alt="Logo"
+            /></a>
+            <a id="menuToggle" class="menutoggle"
+            ><i class="bars-icon fa fa-bars"></i
+            ></a>
+        </div>
+    </div>
+    <div class="top-right">
+        <div class="header-menu">
+
+            <div class="user-area dropdown float-right">
+                <a
+                        href="#"
+                        class="dropdown-toggle active"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="display: inline; position: unset"
+                >
+                    <img
+                            style="margin-top: 10px;margin-left: 10px;"
+                            class="user-avatar rounded-circle"
+                            src="/images/default_avatar.jpg"
+                            alt="User Avatar"
+                    />
+
+                </a>
+                <span th:if="${AuthenticateResponse?.name != null}" style="display: inline; color: white" th:text="'Hello ' + ${AuthenticateResponse?.name}"></span>
+
+                <div class="user-menu dropdown-menu">
+
+                    <a class="nav-link" href="/user/logout"
+                    ><i class="fa fa-power -off"></i>Logout</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+
+/* CSS cho drop-down menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: inherit;
+    color: black;
+    margin-top: 0px;
+    padding: 0px 10px;
+    border: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 210px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: -70px;
+    margin-left: -60px;
+    margin-top: -15px;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+    border-radius: 10px;
+}
+
+.dropdown-content a i {
+    margin-right: 3px;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    /*background-color: #2980b9;*/
+}
+
+.sub-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.sub-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: -163px;
+    border-radius: 10px;
+}
+.sub-dropdown-content a{
+    border-radius: 10px;
+    padding: 3px 3px;
+}
+.dropdown .sub-dropdown:hover .sub-dropdown-content {
+    display: block;
+    position: absolute;
+    top: 0;
+}
+.dropdown .change-role-trigger:hover + .sub-dropdown-content + .dropdown-content{
+    display: block;
+    position: absolute;
+    top: 0;
+}
+.sub-dropdown-content a:hover {
+    background-color: #ddd;
+}
+.selected-row {
+    background-color: #54a25e; /* Đặt màu nền khi hàng được chọn thành màu xanh */
+    color: white; /* Đặt màu chữ khi hàng được chọn thành trắng */
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    /* Thêm các thuộc tính CSS khác nếu cần thiết để trông như đã bị vô hiệu hóa */
+}
